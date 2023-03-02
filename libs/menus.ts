@@ -15,7 +15,7 @@ import {
   BookOpenIcon as EducationActive,
   ChatBubbleBottomCenterTextIcon as GuessBookActive,
   IdentificationIcon as AboutActive,
-} from '@heroicons/react/20/solid'
+} from '@heroicons/react/24/solid'
 
 export const menuData = [
   { name: 'Home', icon: HomeIcon, activeIcon: HomeActive, route: '/' },

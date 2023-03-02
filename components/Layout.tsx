@@ -2,11 +2,13 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { menuData } from "../libs/menus";
+import { useRouter } from "next/router";
 
 interface Props {
   children?: React.ReactElement
 }
 export default function Layout({ children }:Props) {
+  const { asPath } = useRouter()
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
@@ -21,9 +23,12 @@ export default function Layout({ children }:Props) {
                 <Link
                   href={menu.route}
                   key={`menuButton${index}`}
-                  className='flex items-center gap-2 hover:bg-gray-600 w-full p-2 ease-linear duration-200 rounded-lg my-1 group'
+                  className={(asPath !== menu.route ? 'hover:bg-gray-400' : 'bg-gray-200') + ' flex items-center gap-2 w-full p-2 ease-linear duration-200 rounded-lg my-1 group'}
                 >
-                  <menu.icon className='w-8 h-8 group-hover:stroke-white' />
+                  {asPath !== menu.route ? 
+                    <menu.icon className='w-8 h-8 group-hover:stroke-white' /> :
+                    <menu.activeIcon className='w-8 h-8' />
+                  }
                   <span className='group-hover:text-white'>{menu.name}</span>
                 </Link>
               )
