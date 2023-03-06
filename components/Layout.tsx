@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { menuData } from "../libs/menus";
 import { useRouter } from "next/router";
-import { Analytics } from '@vercel/analytics/reactj'
+import { Analytics } from '@vercel/analytics/react'
 
 interface Props {
   children?: React.ReactElement
