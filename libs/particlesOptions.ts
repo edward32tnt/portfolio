@@ -60,7 +60,7 @@ export const particlesOptions = {
 		move: {
 			enable: true,
 			speed: 1,
-			direction: "none",
+			directions: "none",
 			random: false,
 			straight: false,
 			outModes: "out",

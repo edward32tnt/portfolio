@@ -18,9 +18,12 @@ export default function Layout({ children }: Props) {
     await loadFull(main);
   }, []);
 
-  const particlesLoadeed = useCallback(async (container: Container) => {
-    await console.log(container);
-  }, []);
+  const particlesLoadeed = useCallback(
+    async (container: Container | undefined) => {
+      await console.log(container);
+    },
+    []
+  );
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-center py-2">
