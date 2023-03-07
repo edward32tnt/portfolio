@@ -8,7 +8,7 @@ export const particlesOptions = {
 			value: 15,
 			density: {
 				enable: false,
-				value_area: 800,
+				area: 800,
 			},
 		},
 		color: {
@@ -26,7 +26,7 @@ export const particlesOptions = {
 			anim: {
 				enable: false,
 				speed: 1,
-				opacity_min: 0.1,
+				min: 0.1,
 				sync: false,
 			},
 		},
@@ -36,7 +36,7 @@ export const particlesOptions = {
 			anim: {
 				enable: false,
 				speed: 20,
-				size_min: 0.1,
+				min: 0.1,
 				sync: false,
 			},
 		},
@@ -63,7 +63,7 @@ export const particlesOptions = {
 			direction: "none",
 			random: false,
 			straight: false,
-			out_mode: "out",
+			outModes: "out",
 			attract: {
 				enable: false,
 				rotateX: 600,
