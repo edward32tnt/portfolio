@@ -6,7 +6,7 @@ import mainBackground from "../public/mainBackground.jpg";
 const MainAvartar = () => {
 	return (
 		<section className="h-[30rem] self-stretch rounded-xl w-3/5">
-			<div className="flex flex-col items-center justify-end bg-cover bg-avartar w-full h-full rounded-xl">
+			<div className="flex flex-col items-center justify-end bg-contain bg-top bg-avartar w-full h-full rounded-xl">
 				<Image
 					alt="avatarImg"
 					className="rounded-full border self-auto translate-y-10"
