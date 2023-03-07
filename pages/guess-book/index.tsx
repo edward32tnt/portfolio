@@ -1,5 +1,3 @@
 export default function GuessBook() {
-  return (
-    <span> guess book </span>
-  )
+  return <span className="text-2xl"> guess book </span>;
 }

@@ -1,9 +1,8 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next";
+import { useRef, useState } from "react";
 
 const Home: NextPage = () => {
-  return (
-    <span> test </span>
-  )
-}
+  return <div> test </div>;
+};
 
-export default Home
+export default Home;
