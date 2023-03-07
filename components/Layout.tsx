@@ -23,7 +23,7 @@ export default function Layout({ children }: Props) {
               {menuData.map((menu, index) => {
                 return (
                   <Link
-                    href={menu.route}
+                    href={asPath !== menu.route ? menu.route : "#"}
                     key={`menuButton${index}`}
                     className={
                       (asPath !== menu.route
