@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        avartar: "url(../public/bg.jpg)",
+      },
       keyframes: {
         slideUpEnter: {
           "0%": {
