@@ -26,7 +26,7 @@ const PageWithTransition = ({ Component, pageProps }: AppProps) => {
 	const Screen = !transitioning ? Component : prevScreen.current;
 
 	const className =
-		"overflow-auto p-6 max-h-[30rem] text-left w-full h-full ease-linear duration-200 rounded-xl border shadow-md hover:shadow-xl hover:shadow-gray-200 " +
+		"bg-white overflow-auto p-6 max-h-[30rem] text-left w-full h-full ease-linear duration-200 rounded-xl border shadow-md hover:shadow-xl hover:shadow-gray-200 " +
 		cn({
 			"animate-slideUpEnter": !transitioning,
 			"animate-slideUpLeave": transitioning,

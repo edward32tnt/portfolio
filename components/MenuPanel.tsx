@@ -4,7 +4,7 @@ import { menuData } from "../libs/menus";
 const MenuPanel = () => {
 	const { asPath } = useRouter();
 	return (
-		<section className="rounded-xl text-left w-2/8">
+		<section className="rounded-xl text-left w-2/8 min-w-2/8">
 			{menuData.map((menu, index) => {
 				return (
 					<Link
