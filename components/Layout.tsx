@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import MenuPanel from "./MenuPanel";
 import MainAvartar from "./MainAvartar";
 import Particles from "react-tsparticles";
+import type { Container, Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 import { particlesOptions } from "../libs/particlesOptions";
 
@@ -12,12 +13,12 @@ interface Props {
   children?: React.ReactElement;
 }
 export default function Layout({ children }: Props) {
-  const particlesInit = useCallback(async (main) => {
+  const particlesInit = useCallback(async (main: Engine) => {
     console.log(main);
     await loadFull(main);
   }, []);
 
-  const particlesLoadeed = useCallback(async (container) => {
+  const particlesLoadeed = useCallback(async (container: Container) => {
     await console.log(container);
   }, []);
   return (
