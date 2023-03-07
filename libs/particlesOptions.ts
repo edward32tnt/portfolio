@@ -63,7 +63,9 @@ export const particlesOptions = {
 			directions: "none",
 			random: false,
 			straight: false,
-			outModes: "out",
+			outModes: {
+				default: "out",
+			},
 			attract: {
 				enable: false,
 				rotateX: 600,
