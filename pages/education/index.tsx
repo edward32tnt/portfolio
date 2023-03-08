@@ -1,5 +1,33 @@
 export default function Education() {
   return (
-    <span> education </span>
-  )
+    <div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+      <div> education </div>
+    </div>
+  );
 }
