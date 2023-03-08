@@ -1,4 +1,6 @@
-export const particlesOptions = {
+import { ParticlesProps } from "react-tsparticles";
+
+export const particlesOptions: ParticlesProps['options'] = {
 	fullScreen: {
 		enable: true,
 		zIndex: -1,
@@ -16,7 +18,11 @@ export const particlesOptions = {
 		},
 		shape: {
 			type: "circle",
-			sides: 2,
+			options: {
+				'cicle': {
+					sizes: 4,
+				}
+			},
 		},
 		opacity: {
 			value: 1,
@@ -24,7 +30,7 @@ export const particlesOptions = {
 			anim: {
 				enable: false,
 				speed: 1,
-				min: 0.1,
+				opacity_min: 0.1,
 				sync: false,
 			},
 		},
@@ -34,7 +40,7 @@ export const particlesOptions = {
 			anim: {
 				enable: false,
 				speed: 20,
-				min: 0.1,
+				size_min: 0.1,
 				sync: false,
 			},
 		},
@@ -58,9 +64,12 @@ export const particlesOptions = {
 		move: {
 			enable: true,
 			speed: 1,
-			directions: "none",
+			direction: "none",
 			random: false,
 			straight: false,
+			outModes: {
+				default: 'out',
+			},
 			attract: {
 				enable: false,
 				rotateX: 600,
