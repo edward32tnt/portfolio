@@ -8,17 +8,15 @@ export const particlesOptions = {
 			value: 15,
 			density: {
 				enable: false,
-				area: 800,
+				value_area: 800,
 			},
 		},
 		color: {
 			value: "#333",
 		},
 		shape: {
-			type: "cicle",
-			options: {
-				sides: 2,
-			},
+			type: "circle",
+			sides: 2,
 		},
 		opacity: {
 			value: 1,
@@ -63,9 +61,6 @@ export const particlesOptions = {
 			directions: "none",
 			random: false,
 			straight: false,
-			outModes: {
-				default: "out",
-			},
 			attract: {
 				enable: false,
 				rotateX: 600,
