@@ -1,13 +1,13 @@
-import Head from "next/head";
-import Image from "next/image";
-import { useCallback } from "react";
-import { Analytics } from "@vercel/analytics/react";
-import MenuPanel from "./MenuPanel";
-import MainAvartar from "./MainAvartar";
-import Particles from "react-tsparticles";
-import type { Container, Engine } from "tsparticles-engine";
-import { loadFull } from "tsparticles";
-import { particlesOptions } from "../libs/particlesOptions";
+import Head from 'next/head';
+import Image from 'next/image';
+import { useCallback } from 'react';
+import { Analytics } from '@vercel/analytics/react';
+import MenuPanel from './MenuPanel';
+import MainAvartar from './MainAvartar';
+import Particles from 'react-tsparticles';
+import type { Container, Engine } from 'tsparticles-engine';
+import { loadFull } from 'tsparticles';
+import { particlesOptions } from '../libs/particlesOptions';
 
 interface Props {
   children?: React.ReactElement;
@@ -34,6 +34,7 @@ export default function Layout({ children }: Props) {
         <Particles
           id="Particles-here"
           init={particlesInit}
+          loaded={particlesLoadeed}
           options={particlesOptions}
         />
         <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
@@ -50,7 +51,7 @@ export default function Layout({ children }: Props) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Powered by{" "}
+            Powered by{' '}
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </a>
         </footer>

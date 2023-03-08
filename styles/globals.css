@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.page-with-transition {
+  @apply bg-white overflow-auto p-6 max-h-[30rem] text-left w-full h-full ease-linear duration-200 rounded-xl border shadow-md hover:shadow-xl hover:shadow-gray-200;
+}
