@@ -5,3 +5,14 @@
 .page-with-transition {
   @apply bg-white overflow-auto p-6 max-h-[30rem] text-left w-full h-full ease-linear duration-200 rounded-xl border shadow-md hover:shadow-xl hover:shadow-gray-200;
 }
+
+.big-btn {
+  @apply flex items-center gap-2 w-full p-4 ease-linear duration-200 rounded-lg mb-1;
+}
+.big-btn:hover {
+  @apply hover:bg-gray-400 hover:shadow-xl hover:shadow-gray-200 border-white;
+}
+
+.big-btn-selected {
+  @apply bg-gray-200 border-gray-200 flex items-center gap-2 w-full p-4 ease-linear duration-200 rounded-lg mb-1;
+}

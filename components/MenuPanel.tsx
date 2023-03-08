@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { menuData } from '../libs/menus';
+import cn from 'classnames';
 const MenuPanel = () => {
   const { asPath } = useRouter();
   return (
@@ -10,12 +11,11 @@ const MenuPanel = () => {
           <Link
             href={asPath !== menu.route ? menu.route : '#'}
             key={`menuButton${index}`}
-            className={
-              (asPath !== menu.route
-                ? 'hover:bg-gray-400 hover:shadow-xl hover:shadow-gray-200 border-white '
-                : 'bg-gray-200 border-gray-200') +
-              ' flex items-center gap-2 w-full p-4 ease-linear duration-200 rounded-lg mb-1 group'
-            }
+            className={cn({
+              'big-btn': asPath !== menu.route,
+              'big-btn-selected': asPath === menu.route,
+              group: true
+            })}
           >
             {asPath !== menu.route ? (
               <menu.icon className="w-8 h-8 group-hover:stroke-white" />
