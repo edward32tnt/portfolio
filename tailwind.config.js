@@ -8,9 +8,29 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        avartar: "url(../public/bg.jpg)",
+        avatar: "url(../public/bg2.jpg)",
       },
       keyframes: {
+        slideScaleEnter: {
+          "0%": {
+            opacity: 0,
+            transform: 'scale(1.1)',
+          },
+          "100%": {
+            opacity: 100,
+            transform: 'scale(1)',
+          }
+        },
+        slideScaleLeave: {
+          "0%": {
+            opacity: 100,
+            transform: 'scale(1)',
+          },
+          "100%": {
+            opacity: 0,
+            transform: 'scale(1.1)',
+          }
+        },
         slideUpEnter: {
           "0%": {
             opacity: 0,
@@ -36,6 +56,8 @@ module.exports = {
     animation: {
       slideUpEnter: "slideUpEnter .3s ease-in-out",
       slideUpLeave: "slideUpLeave .3s ease-in-out",
+      slideScaleEnter: "slideScaleEnter .3s ease-in-out",
+      slideScaleLeave: "slideScaleLeave .3s ease-in-out",
     },
   },
   plugins: [],
