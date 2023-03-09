@@ -6,10 +6,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.10",
     "@heroicons/react": "^2.0.16",
     "@vercel/analytics": "^0.1.11",
     "classnames": "^2.3.2",
     "framer-motion": "^10.1.0",
+    "graphql": "^16.6.0",
     "next": "latest",
     "next-page-transitions": "1.0.0-beta.2",
     "react": "18.2.0",
