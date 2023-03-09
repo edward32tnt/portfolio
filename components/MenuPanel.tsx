@@ -12,7 +12,7 @@ const MenuPanel = () => {
             href={asPath !== menu.route ? menu.route : '#'}
             key={`menuButton${index}`}
             className={cn({
-              'big-btn': asPath !== menu.route,
+              'big-btn': true,
               'big-btn-selected': asPath === menu.route,
               group: true
             })}

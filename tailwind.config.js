@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        avartar: "url(../public/bg.jpg)",
+        avatar: "url(../public/bg.jpg)",
       },
       keyframes: {
         slideUpEnter: {

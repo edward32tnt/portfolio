@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useCallback } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import MenuPanel from './MenuPanel';
-import MainAvartar from './MainAvartar';
+import MainAvatar from './MainAvatar';
 import Particles from 'react-tsparticles';
 import type { Container, Engine } from 'tsparticles-engine';
 import { loadFull } from 'tsparticles';
@@ -40,7 +40,7 @@ export default function Layout({ children }: Props) {
         <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
           <section className="flex flex-row items-start gap-4 max-w-7xl flex-nowarp justify-start sm:w-full">
             <MenuPanel />
-            <MainAvartar />
+            <MainAvatar />
             <section className="w-full">{children}</section>
           </section>
         </main>
