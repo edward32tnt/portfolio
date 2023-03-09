@@ -7,12 +7,13 @@ import {
 
 import avatarImg from '../public/avatarImg.png';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import bg1 from '../public/bg1.jpg';
 import bg2 from '../public/bg2.jpg';
 import bg3 from '../public/bg3.jpg';
 import classNames from 'classnames';
+import { mainInfoContext } from '../libs/mainInfoContext';
 
 export interface MainInfo {
   id: string;
@@ -27,11 +28,8 @@ export interface MainInfo {
     }
   ];
 }
-interface Props {
-  mainInfo: MainInfo;
-}
-
-const Mainavatar = ({ mainInfo }: Props) => {
+const Mainavatar = () => {
+  const { mainInfo } = useContext(mainInfoContext);
   const bgList = mainInfo.mainBackground.map((x) => x.imageUrl.url);
   const [bgIndex, setBgIndex] = useState(0);
   const [isTransicationing, setIsTransicationing] = useState(false);

@@ -9,7 +9,7 @@ const MenuPanel = () => {
       {menuData.map((menu, index) => {
         return (
           <Link
-            href={asPath !== menu.route ? menu.route : '#'}
+            href={asPath !== menu.route ? menu.route : ''}
             key={`menuButton${index}`}
             className={cn({
               'big-btn': true,

@@ -6,15 +6,19 @@ import PageWithTransition from '../components/PageWithTransition';
 import client from '../libs/apollo';
 import { getMainInfo } from '../libs/apolloQuerys';
 import { MainInfo } from '../components/MainAvatar';
+import { mainInfoContext } from '../libs/mainInfoContext';
 
 interface Props {
   mainInfo: MainInfo;
 }
+
 function MyApp(pageProps: Props & AppProps) {
   return (
-    <Layout mainInfo={pageProps.mainInfo}>
-      <PageWithTransition {...pageProps} />
-    </Layout>
+    <mainInfoContext.Provider value={{ mainInfo: pageProps.mainInfo }}>
+      <Layout>
+        <PageWithTransition {...pageProps} />
+      </Layout>
+    </mainInfoContext.Provider>
   );
 }
 

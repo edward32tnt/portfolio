@@ -11,10 +11,8 @@ import { particlesOptions } from '../libs/particlesOptions';
 
 interface Props {
   children?: React.ReactElement;
-  mainInfo: MainInfo;
 }
-export default function Layout(pageProps: Props) {
-  const { children, mainInfo } = pageProps;
+export default function Layout({ children }: Props) {
   const particlesInit = useCallback(async (main: Engine) => {
     // console.log(main);
     await loadFull(main);
@@ -42,7 +40,7 @@ export default function Layout(pageProps: Props) {
         <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
           <section className="flex flex-row items-start gap-4 max-w-7xl flex-nowarp justify-start sm:w-full">
             <MenuPanel />
-            <MainAvatar mainInfo={mainInfo} />
+            <MainAvatar />
             <section className="w-full">{children}</section>
           </section>
         </main>
