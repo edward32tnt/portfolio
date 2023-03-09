@@ -88,7 +88,7 @@ const Mainavatar = () => {
         </Link>
         <Link
           target="_blank"
-          href={mainInfo.resumeDownload.url}
+          href={'google.com'}
           className="big-btn group/action"
         >
           <CloudArrowDownIcon className="w-8 h-8" />
