@@ -5,6 +5,10 @@ export const mainInfoContext = createContext({
     id: '',
     fullName: '',
     currentTitle: '',
+    linkedin: '',
+    resumeDownload: {
+      url: '',
+    },
     mainBackground: [
       {
         id: '',

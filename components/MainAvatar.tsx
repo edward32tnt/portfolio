@@ -9,9 +9,6 @@ import avatarImg from '../public/avatarImg.png';
 import Link from 'next/link';
 import { useContext, useEffect, useState } from 'react';
 
-import bg1 from '../public/bg1.jpg';
-import bg2 from '../public/bg2.jpg';
-import bg3 from '../public/bg3.jpg';
 import classNames from 'classnames';
 import { mainInfoContext } from '../libs/mainInfoContext';
 
@@ -19,6 +16,10 @@ export interface MainInfo {
   id: string;
   fullName: string;
   currentTitle: string;
+  linkedin: string;
+  resumeDownload: {
+    url: string;
+  };
   mainBackground: [
     {
       id: string;
@@ -34,6 +35,7 @@ const Mainavatar = () => {
   const [bgIndex, setBgIndex] = useState(0);
   const [isTransicationing, setIsTransicationing] = useState(false);
 
+  // console.log('mainInfo', mainInfo);
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsTransicationing(true);
@@ -76,11 +78,19 @@ const Mainavatar = () => {
         <span className="">{mainInfo.currentTitle}</span>
       </div>
       <div className="flex gap-2 justify-between w-full h-auto rounded-bl-xl rounded-br-xl p-1 bg-white bg-opacity-40 group-hover:bg-opacity-100 border-t border-gray-100">
-        <Link href="" className="big-btn group/action">
+        <Link
+          target="_blank"
+          href={mainInfo.linkedin}
+          className="big-btn group/action"
+        >
           <CodeBracketIcon className="w-8 h-8" />
           <span className="group-hover/action:text-white">Linkedin</span>
         </Link>
-        <Link href="" className="big-btn group/action">
+        <Link
+          target="_blank"
+          href={mainInfo.resumeDownload.url}
+          className="big-btn group/action"
+        >
           <CloudArrowDownIcon className="w-8 h-8" />
           <span className="group-hover/action:text-white">Resume</span>
         </Link>
