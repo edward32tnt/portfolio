@@ -1,5 +1,4 @@
 import { CubeIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
 
 interface Props {
   title: string;
@@ -13,14 +12,14 @@ export default function SkillCard({ title, value, onClick, isExpand }: Props) {
       className={
         ' p-2 border-b group duration-200 ease-in-out cursor-pointer ' +
         ` hover:text-teal-600 ${
-          isExpand ? ` scale-125 text-teal-600 ` : '  text-slate-600'
+          isExpand ? ' scale-125 text-teal-600 ' : '  text-slate-600'
         }`
       }
       onClick={() => onClick && onClick()}
     >
       <p className=" text-md text-left opacity-80 flex justify-start items-center gap-2">
-        <CubeIcon className="h-4 w-4  " />
-        <span className=" ">{title}</span>
+        <CubeIcon className="h-4 w-4" />
+        <span className="">{title}</span>
       </p>
       <div className="flex w-full justify-center items-center gap-4">
         <div className="bg-gray-300 h-3 rounded w-full">
@@ -33,7 +32,7 @@ export default function SkillCard({ title, value, onClick, isExpand }: Props) {
             }}
           ></div>
         </div>
-        <span className=" text-sm ">{value}</span>
+        <span className="text-sm">{value}</span>
       </div>
     </div>
   );
