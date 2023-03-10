@@ -6,24 +6,21 @@ import cn from 'classnames';
 const PageWithTransition = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
   const [transitioning, setTransitioning] = useState(false);
-  const prevScreen = useRef(Component);
 
   useEffect(() => {
     const enter = () => {
-      prevScreen.current = Component;
-
       setTransitioning(true);
-      setTimeout(() => {
-        setTransitioning(false);
-      }, 280);
+    };
+    const complete = () => {
+      setTransitioning(false);
     };
     router.events.on('routeChangeStart', enter);
+    router.events.on('routeChangeComplete', complete);
     return () => {
       router.events.off('routeChangeStart', enter);
+      router.events.off('routeChangeComplete', complete);
     };
   }, [Component, router.events]);
-
-  const Screen = !transitioning ? Component : prevScreen.current;
 
   const className =
     'page-with-transition ' +
@@ -34,7 +31,7 @@ const PageWithTransition = ({ Component, pageProps }: AppProps) => {
 
   return (
     <div className={className}>
-      <Screen {...pageProps} />
+      <Component {...pageProps} />
     </div>
   );
 };
