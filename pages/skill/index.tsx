@@ -23,7 +23,8 @@ const Skill: NextPage<Props> = ({ skills }) => {
           title={x.title}
           value={x.value}
           onClick={() => setExpandId(expandId === x.id ? '' : x.id)}
-          isExpand={expandId === x.id}
+          isFocus={expandId === x.id}
+          isBlur={expandId !== x.id && expandId !== ''}
         />
       ))}
     </div>
