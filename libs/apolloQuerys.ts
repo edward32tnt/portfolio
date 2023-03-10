@@ -26,3 +26,18 @@ export const getMainInfo = gql`
     }
   }
 `
+
+export const getPersonInfo = gql`
+query MainInfos {
+  personInfo(where: {id: "clf23gqra4uk80czjfsi5gukc"}) {
+    textDatas {
+      id
+      title
+      value {
+        raw
+      }
+    }
+  }
+}
+
+`
