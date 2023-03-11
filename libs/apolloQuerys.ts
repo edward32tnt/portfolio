@@ -48,7 +48,7 @@ query MainInfos {
     skills {
       id
       category
-      integerDatas {
+      integerDatas(orderBy: value_DESC) {
         id
         title
         value
