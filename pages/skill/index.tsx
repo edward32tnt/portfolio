@@ -7,25 +7,40 @@ interface Props {
   skills: [
     {
       id: string;
-      title: string;
-      value: number;
+      category: string;
+      integerDatas: [
+        {
+          id: string;
+          title: string;
+          value: number;
+        }
+      ];
     }
   ];
 }
 const Skill: NextPage<Props> = ({ skills }) => {
   const [expandId, setExpandId] = useState('');
   return (
-    <div className="grid grid-cols-4 gap-2">
-      <p className="p-2 col-span-4 text-gray-400 text-xl border-b">Skills</p>
+    <div className="grid grid-cols-2 gap-2">
       {skills.map((x) => (
-        <SkillCard
-          key={'skill-card-' + x.id}
-          title={x.title}
-          value={x.value}
-          onClick={() => setExpandId(expandId === x.id ? '' : x.id)}
-          isFocus={expandId === x.id}
-          isBlur={expandId !== x.id && expandId !== ''}
-        />
+        <div
+          key={'skill-category-' + x.id}
+          className="grid grid-cols-2 h-full auto-rows-max gap-2"
+        >
+          <p className="col-span-2 p-2 text-gray-400 text-xl border-b border-b-gray-100">
+            {x.category}
+          </p>
+          {x.integerDatas.map((s) => (
+            <SkillCard
+              key={'skill-card-' + s.id}
+              title={s.title}
+              value={s.value}
+              onClick={() => setExpandId(expandId === s.id ? '' : s.id)}
+              isFocus={expandId === s.id}
+              isBlur={expandId !== s.id && expandId !== ''}
+            />
+          ))}
+        </div>
       ))}
     </div>
   );
@@ -36,7 +51,7 @@ Skill.getInitialProps = async () => {
     query: getSkill
   });
   return {
-    skills: data.skill.integerDatas
+    skills: data.mainInfo.skills
   };
 };
 

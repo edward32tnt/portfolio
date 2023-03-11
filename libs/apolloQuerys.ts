@@ -44,11 +44,15 @@ query MainInfos {
 
 export const getSkill = gql`
 query MainInfos {
-  skill(where: {id: "clf28fmp25ecg0a122lrn2a3x"}) {
-    integerDatas(orderBy: value_DESC, first: 100) {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    skills {
       id
-      title
-      value
+      category
+      integerDatas {
+        id
+        title
+        value
+      }
     }
   }
 }

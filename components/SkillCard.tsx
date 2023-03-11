@@ -18,9 +18,9 @@ export default function SkillCard({
   return (
     <div
       className={
-        ' p-2 border-b group duration-200 ease-in-out cursor-pointer ' +
+        ' border-b  border-b-gray-100 p-2 group duration-200 ease-in-out cursor-pointer ' +
         ` hover:text-teal-600 ${
-          isFocus ? ' scale-110 text-teal-600 ' : '  text-slate-600'
+          isFocus ? ' scale-110 text-teal-600 ' : '  text-slate-600 '
         } ${isBlur ? ' opacity-60 ' : ''}`
       }
       onClick={() => onClick && onClick()}
