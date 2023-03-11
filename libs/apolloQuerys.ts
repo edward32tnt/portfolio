@@ -41,3 +41,20 @@ query MainInfos {
 }
 
 `
+
+export const getSkill = gql`
+query MainInfos {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    skills {
+      id
+      category
+      integerDatas(orderBy: value_DESC) {
+        id
+        title
+        value
+      }
+    }
+  }
+}
+
+`
