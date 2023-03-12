@@ -2,6 +2,11 @@ import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
 
+interface IntegerData {
+  id: string;
+  title: string;
+  value?: string;
+}
 export interface WorkExperience {
   id: string;
   companyName: string;
@@ -12,6 +17,7 @@ export interface WorkExperience {
   endTime?: Date;
   present?: boolean;
   companyLogo?: { url: string };
+  tags?: IntegerData[];
 }
 
 export default (wx: WorkExperience) => {
@@ -46,6 +52,21 @@ export default (wx: WorkExperience) => {
       >
         {wx.description}
       </ReactMarkdown>
+      {wx.tags && (
+        <p className="flex gap-2 my-4">
+          <span>Tags:</span>
+          {wx.tags.map((x) => {
+            return (
+              <i
+                key={'tag-' + x.id}
+                className="lowercase rounded text-white bg-slate-400 px-2"
+              >
+                {x.title}
+              </i>
+            );
+          })}
+        </p>
+      )}
     </div>
   );
 };

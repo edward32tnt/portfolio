@@ -71,16 +71,32 @@ query MainInfos {
       endTime
       description
       location
+      companyLogo {
+        url
+      }
       tags {
         id
         title
-      }
-      companyLogo {
-        url
       }
     }
   }
 }
 
+
+`
+
+export const getEducation = gql`
+query MainInfos {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    educations(orderBy: endTime_DESC) {
+      id
+      major
+      present
+      schoolName
+      startTime
+      endTime
+    }
+  }
+}
 
 `
