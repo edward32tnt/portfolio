@@ -18,7 +18,7 @@ export default (wx: WorkExperience) => {
   return (
     <div className="p-2 border-b text-stone-500">
       <p className="text-3xl flex justify-between mb-2">
-        <span>{wx.companyName}</span>
+        <span className=" uppercase">{wx.companyName}</span>
         {wx.companyLogo && (
           <Image
             width={120}
