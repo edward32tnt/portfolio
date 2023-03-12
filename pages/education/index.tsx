@@ -1,33 +1,29 @@
-export default function Education() {
+import { NextPage } from 'next';
+import EducationCard, { EducationProps } from '../../components/EducationCard';
+import client from '../../libs/apollo';
+import { getEducation } from '../../libs/apolloQuerys';
+
+interface Props {
+  educations: EducationProps[];
+}
+
+const Education: NextPage<Props> = ({ educations }) => {
   return (
-    <div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
-      <div> education </div>
+    <div className="flex flex-row">
+      {educations.map((x) => (
+        <EducationCard {...x} />
+      ))}
     </div>
   );
-}
+};
+
+Education.getInitialProps = async () => {
+  const { data } = await client.query({
+    query: getEducation
+  });
+  return {
+    educations: data.mainInfo.educations
+  };
+};
+
+export default Education;
