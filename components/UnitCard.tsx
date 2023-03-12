@@ -21,8 +21,8 @@ export default function UnitCard({
         children
       ) : (
         <>
-          <p className=" text-gray-400 text-sm">{title}</p>
-          <p className=" text-xl text-right">{value}</p>
+          <p className=" text-stone-700 text-sm">{title}</p>
+          <p className=" text-xl text-stone-500 text-right">{value}</p>
         </>
       )}
     </div>
