@@ -58,3 +58,29 @@ query MainInfos {
 }
 
 `
+
+export const getWorkExperience = gql`
+query MainInfos {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    workExperiences(orderBy: endTime_DESC) {
+      id
+      companyName
+      jobTitle
+      present
+      startTime
+      endTime
+      description
+      location
+      tags {
+        id
+        title
+      }
+      companyLogo {
+        url
+      }
+    }
+  }
+}
+
+
+`
