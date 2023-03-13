@@ -5,7 +5,7 @@ import {
   getGuessbook,
   publishGuessbook
 } from '../../libs/apolloQuerys';
-import Comment, { CommentProps } from '../../components/CommentCard';
+import CommentCard, { CommentProps } from '../../components/CommentCard';
 import { FormEventHandler, useState } from 'react';
 import classNames from 'classnames';
 interface Props {
@@ -99,7 +99,7 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
         </p>
       </form>
       {theData.map((x) => (
-        <Comment key={'comment-card-' + x.id} {...x} />
+        <CommentCard key={'comment-card-' + x.id} {...x} />
       ))}
     </div>
   );

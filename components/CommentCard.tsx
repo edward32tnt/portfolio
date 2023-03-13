@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import ReactMarkdown from 'react-markdown';
+dayjs.extend(relativeTime);
 
 export interface CommentProps {
   id: string;
@@ -8,8 +9,7 @@ export interface CommentProps {
   publishedAt: Date;
   content: string;
 }
-const Comment = (c: CommentProps) => {
-  dayjs.extend(relativeTime);
+const CommentCard = (c: CommentProps) => {
   return (
     <div className="border-b p-4 flex flex-col gap-4">
       <p className="flex gap-2 justify-between">
@@ -23,4 +23,4 @@ const Comment = (c: CommentProps) => {
   );
 };
 
-export default Comment;
+export default CommentCard;
