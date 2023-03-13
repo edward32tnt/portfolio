@@ -89,7 +89,8 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
               'bg-slate-300': !isPending,
               'bg-slate-200': isPending,
               rounded: true,
-              'focus:ring-1': true
+              'focus:ring-1': true,
+              'cursor-pointer': true
             })}
             disabled={isPending}
             type="submit"
