@@ -5,7 +5,7 @@ import {
   getGuessbook,
   publishGuessbook
 } from '../../libs/apolloQuerys';
-import Comment, { CommentProps } from '../../components/Comment';
+import Comment, { CommentProps } from '../../components/CommentCard';
 import { FormEventHandler, useState } from 'react';
 import classNames from 'classnames';
 interface Props {
