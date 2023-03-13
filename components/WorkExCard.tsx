@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
+import { TagIcon } from '@heroicons/react/24/solid';
 
 interface IntegerData {
   id: string;
@@ -53,13 +54,14 @@ export default (wx: WorkExperience) => {
         {wx.description}
       </ReactMarkdown>
       {wx.tags && (
-        <p className="flex gap-2 my-4">
+        <p className="flex gap-2 my-4 items-center">
+          <TagIcon className="w-4 h-4" />
           <span>Tags:</span>
           {wx.tags.map((x) => {
             return (
               <i
                 key={'tag-' + x.id}
-                className="lowercase rounded text-white bg-slate-400 px-2"
+                className="lowercase rounded text-white bg-slate-400 px-2 "
               >
                 {x.title}
               </i>
