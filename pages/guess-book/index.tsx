@@ -6,10 +6,8 @@ import {
   publishGuessbook
 } from '../../libs/apolloQuerys';
 import Comment, { CommentProps } from '../../components/Comment';
-import { FormEventHandler, useEffect, useState } from 'react';
+import { FormEventHandler, useState } from 'react';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
-import { create } from 'domain';
 interface Props {
   comments: CommentProps[];
 }
@@ -88,9 +86,9 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
             className={classNames({
               'font-bold': true,
               'px-5': true,
+              'bg-slate-300': !isPending,
+              'bg-slate-200': isPending,
               rounded: true,
-              'bg-sky-300': !isPending,
-              'bg-gray-300': isPending,
               'focus:ring-1': true
             })}
             disabled={isPending}
