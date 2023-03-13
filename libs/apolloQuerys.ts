@@ -100,3 +100,35 @@ query MainInfos {
 }
 
 `
+
+export const getGuessbook = gql`
+query MainInfos {
+  guessBooks(orderBy: publishedAt_DESC) {
+    nickname
+    id
+    publishedAt
+    content
+  }
+}
+
+`
+
+export const createGuessbook = gql`
+mutation CreateGuessBook($nickname: String!, $content: String!){
+  createGuessBook(
+    data: {content: $content, nickname: $nickname}
+  ) {
+    id
+  }
+}
+
+`
+
+export const publishGuessbook = gql`
+mutation PublishGuessBook ($id: ID!)  {
+  publishGuessBook(where: {id: $id}, to: PUBLISHED) {
+    id
+  }
+}
+
+`

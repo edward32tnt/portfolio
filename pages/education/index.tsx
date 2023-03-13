@@ -11,7 +11,7 @@ const Education: NextPage<Props> = ({ educations }) => {
   return (
     <div className="flex flex-row">
       {educations.map((x) => (
-        <EducationCard {...x} />
+        <EducationCard key={'education-card-' + x.id} {...x} />
       ))}
     </div>
   );

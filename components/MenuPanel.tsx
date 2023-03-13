@@ -5,7 +5,12 @@ import cn from 'classnames';
 const MenuPanel = () => {
   const { asPath } = useRouter();
   return (
-    <section className="rounded-xl text-left w-2/8 min-w-2/8">
+    <section
+      className={
+        'rounded-xl text-left static w-2/8 min-w-2/8 flex' +
+        'max-md:w-full max_md:flex-row max_md:fixed max_md:top-0'
+      }
+    >
       {menuData.map((menu, index) => {
         return (
           <Link
