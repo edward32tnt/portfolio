@@ -22,7 +22,7 @@ export const menuData = [
   { name: 'Education', icon: BookOpenIcon, activeIcon: EducationActive, route: '/education' },
   { name: 'Skill', icon: LightBulbIcon, activeIcon: SkillActive, route: '/skill' },
   { name: 'Expirence', icon: GlobeAsiaAustraliaIcon, activeIcon: WorkActive, route: '/work-expirence' },
-  // { name: 'Project', icon: TrophyIcon, activeIcon: ProjectActive, route: '/project' },
+  { name: 'Project', icon: TrophyIcon, activeIcon: ProjectActive, route: '/project' },
   { name: 'GuessBook', icon: ChatBubbleBottomCenterTextIcon, activeIcon: GuessBookActive, route: '/guess-book' },
   // { name: 'About', icon: IdentificationIcon, activeIcon: AboutActive, route: '/about' },
 ]

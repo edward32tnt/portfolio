@@ -20,7 +20,7 @@ export interface MainInfo {
   resumeDownload: {
     url: string;
   };
-  mainBackground: [
+  images: [
     {
       id: string;
       imageUrl: {
@@ -31,7 +31,7 @@ export interface MainInfo {
 }
 const Mainavatar = () => {
   const { mainInfo } = useContext(mainInfoContext);
-  const bgList = mainInfo.mainBackground.map((x) => x.imageUrl.url);
+  const bgList = mainInfo.images.map((x) => x.imageUrl.url);
   const [bgIndex, setBgIndex] = useState(0);
   const [isTransicationing, setIsTransicationing] = useState(false);
 

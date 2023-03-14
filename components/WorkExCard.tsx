@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import RelativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(RelativeTime);
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
 import { TagIcon } from '@heroicons/react/24/solid';
@@ -38,8 +40,9 @@ export default (wx: WorkExperience) => {
       <p className="text-sm text-stone-400">{wx.jobTitle}</p>
       <p className="flex justify-between items-end  text-stone-400 text-sm">
         <span className="">
-          {dayjs(wx.startTime).format('YYYY/MM')} -{' '}
-          {dayjs(wx.endTime).format('YYYY/MM')}
+          {dayjs(wx.startTime).format('YYYY/MM')} ~{' '}
+          {dayjs(wx.endTime).format('YYYY/MM')}{' '}
+          {dayjs(wx.startTime).to(dayjs(wx.endTime), true)}
         </span>
         <span>{wx.location}</span>
       </p>
