@@ -1,9 +1,6 @@
 import Image from 'next/image';
 
-import {
-  CloudArrowDownIcon,
-  CodeBracketIcon
-} from '@heroicons/react/24/outline';
+import { CommandLineIcon, CodeBracketIcon } from '@heroicons/react/24/outline';
 
 import avatarImg from '../public/avatarImg.png';
 import Link from 'next/link';
@@ -83,16 +80,16 @@ const Mainavatar = () => {
           href={mainInfo.linkedin}
           className="big-btn group/action"
         >
-          <CodeBracketIcon className="w-8 h-8" />
+          <CommandLineIcon className="w-8 h-8" />
           <span className="group-hover/action:text-white">Linkedin</span>
         </Link>
         <Link
           target="_blank"
-          href={'google.com'}
+          href={'https://github.com/edward32tnt/portfolio'}
           className="big-btn group/action"
         >
-          <CloudArrowDownIcon className="w-8 h-8" />
-          <span className="group-hover/action:text-white">Resume</span>
+          <CodeBracketIcon className="w-8 h-8" />
+          <span className="group-hover/action:text-white">GitPortfolio</span>
         </Link>
       </div>
     </section>
