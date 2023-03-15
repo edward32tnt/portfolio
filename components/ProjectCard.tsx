@@ -16,6 +16,7 @@ export interface ProjectCardProps {
       };
     }
   ];
+  role: string;
   projectName: string;
   startTime: Date;
   endTime: Date;

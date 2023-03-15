@@ -20,7 +20,6 @@ const ProjectModalView = (props: ProjectCardProps & Props) => {
   };
 
   const handleBgChange = (index: number) => {
-    console.log('handleBgChange', index);
     setIsTransicationing(true);
     setTimeout(() => {
       setBgIndex(index);
@@ -81,6 +80,7 @@ const ProjectModalView = (props: ProjectCardProps & Props) => {
         </div>
         <div className="bg-white rounded-br rounded-tr animate-in fade-in slide-in-from-right ease-in-out p-4 overflow-scroll duration-200">
           <p className="text-xl">{props.projectName}</p>
+          <p className="text-sm text-stone-500 my-1">{props.role}</p>
           <p className="text-sm text-stone-500 my-1">
             {dayjs(props.startTime).format('YYYY/MM')} ~{' '}
             {props.present ? 'Present' : dayjs(props.endTime).format('YYYY/MM')}

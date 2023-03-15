@@ -135,6 +135,7 @@ query MainInfos {
       description
       endTime
       id
+      role
       projectName
       startTime
       present
