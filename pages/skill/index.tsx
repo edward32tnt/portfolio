@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import { useState } from 'react';
 import SkillCard from '../../components/SkillCard';
 import client from '../../libs/apollo';
@@ -46,12 +46,19 @@ const Skill: NextPage<Props> = ({ skills }) => {
   );
 };
 
-Skill.getInitialProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query({
     query: getSkill
   });
+
+  const { mainInfo } = data;
+  const { skills } = mainInfo;
+
   return {
-    skills: data.mainInfo.skills
+    props: {
+      mainInfo,
+      skills
+    }
   };
 };
 

@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import client, { writeClient } from '../../libs/apollo';
 import {
   createGuessbook,
@@ -104,12 +104,19 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
     </div>
   );
 };
-GuessBook.getInitialProps = async () => {
+
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query({
     query: getGuessbook
   });
+
+  const { mainInfo, guessBooks } = data;
+
   return {
-    comments: data.guessBooks
+    props: {
+      mainInfo,
+      comments: guessBooks
+    }
   };
 };
 

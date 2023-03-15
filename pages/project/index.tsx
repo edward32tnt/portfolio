@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import ProjectCard, { ProjectCardProps } from '../../components/ProjectCard';
 import client from '../../libs/apollo';
 import { getProject } from '../../libs/apolloQuerys';
@@ -16,12 +16,19 @@ const Project: NextPage<Props> = ({ projects }) => {
   );
 };
 
-Project.getInitialProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query({
     query: getProject
   });
+
+  const { mainInfo } = data;
+  const { projects } = mainInfo;
+
   return {
-    projects: data.mainInfo.projects
+    props: {
+      mainInfo,
+      projects
+    }
   };
 };
 

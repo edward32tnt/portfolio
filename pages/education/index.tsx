@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import EducationCard, { EducationProps } from '../../components/EducationCard';
 import client from '../../libs/apollo';
 import { getEducation } from '../../libs/apolloQuerys';
@@ -17,12 +17,19 @@ const Education: NextPage<Props> = ({ educations }) => {
   );
 };
 
-Education.getInitialProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query({
     query: getEducation
   });
+
+  const { mainInfo } = data;
+  const { educations } = mainInfo;
+
   return {
-    educations: data.mainInfo.educations
+    props: {
+      mainInfo,
+      educations
+    }
   };
 };
 
