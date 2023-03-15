@@ -8,9 +8,6 @@ query MainInfos {
     fullName
     id
     linkedin
-    resumeDownload {
-      url
-    }
     images {
       id
       imageUrl {
@@ -23,17 +20,36 @@ query MainInfos {
 `
 
 export const getPersonInfo = gql`
-query MainInfos {
-  personInfo(where: {id: "clf23gqra4uk80czjfsi5gukc"}) {
-    textDatas {
+query MyQuery {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    linkedin
+    id
+    fullName
+    currentTitle
+    images {
       id
-      title
-      value {
-        raw
+      imageUrl {
+        width
+        url
+        height
+      }
+      createdAt
+    }
+    resumeDownload {
+      url
+    }
+    personInfo {
+      textDatas {
+        id
+        title
+        value {
+          raw
+        }
       }
     }
   }
 }
+
 
 `
 

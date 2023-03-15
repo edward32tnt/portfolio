@@ -1,5 +1,4 @@
-import type { NextPage } from 'next';
-import App, { AppContext, AppProps } from 'next/app';
+import type { GetServerSideProps, NextPage } from 'next';
 import UnitCard from '../components/UnitCard';
 import client from '../libs/apollo';
 import { getPersonInfo } from '../libs/apolloQuerys';
@@ -53,13 +52,19 @@ const Home: NextPage<Props> = ({ personInfo }) => {
   );
 };
 
-Home.getInitialProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query({
     query: getPersonInfo
   });
 
+  const { mainInfo } = data;
+  const { personInfo } = mainInfo;
+
   return {
-    personInfo: data.personInfo
+    props: {
+      personInfo: personInfo,
+      mainInfo: mainInfo
+    }
   };
 };
 
