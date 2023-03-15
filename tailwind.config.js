@@ -69,5 +69,5 @@ module.exports = {
       glowing: 'glowing 10s linear'
     }
   },
-  plugins: []
+  plugins: [require('tailwindcss-animate'), require('tw-elements/dist/plugin')]
 };

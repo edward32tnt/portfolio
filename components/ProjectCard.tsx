@@ -3,12 +3,15 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import Image from 'next/image';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
+import ProjectModalView from './ProjectModalView';
 export interface ProjectCardProps {
   id: string;
   images: [
     {
       id: string;
       imageUrl: {
+        width: number;
+        height: number;
         url: string;
       };
     }
@@ -23,41 +26,33 @@ export interface ProjectCardProps {
 const ProjectCard = (pc: ProjectCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpenDetail = () => {
-    console.log('handleOpenDetail');
     setIsOpen(true);
   };
   return (
     <>
       {isOpen &&
         createPortal(
-          <div
-            className=" fixed top-0 w-full h-full bg-gray-50 opacity-60 ease-linear duration-200"
-            onClick={() => setIsOpen(false)}
-          >
-            <div>{pc.projectName}</div>
-          </div>,
+          <ProjectModalView onClose={() => setIsOpen(false)} {...pc} />,
           document.body
         )}
       <div
-        className="flex justify-center flex-col text-center text-stone-500 cursor-pointer rounded border"
+        className="flex justify-center flex-col items-center text-center text-stone-500 cursor-pointer "
         onClick={handleOpenDetail}
       >
-        {pc.images.map((x) => (
+        {pc.images.length > 0 && (
           <Image
-            key={'project-image-' + x.id}
-            className=" shadow-md"
-            src={x.imageUrl.url}
-            width={120}
-            height={120}
+            className=" w-full h-[200px] overflow-hidden"
+            src={pc.images[0].imageUrl.url}
+            width={pc.images[0].imageUrl.width}
+            height={pc.images[0].imageUrl.height}
             alt={pc.projectName}
           />
-        ))}
-        <p>{pc.projectName}</p>
+        )}
+        <p className="my-2">{pc.projectName}</p>
         <p>
           {dayjs(pc.startTime).format('YYYY/MM')} ~{' '}
           {pc.present ? 'Present' : dayjs(pc.endTime).format('YYYY/MM')}
         </p>
-        <ReactMarkdown>{pc.description}</ReactMarkdown>
       </div>
     </>
   );
