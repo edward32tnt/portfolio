@@ -9,7 +9,7 @@ export const mainInfoContext = createContext({
     resumeDownload: {
       url: '',
     },
-    mainBackground: [
+    images: [
       {
         id: '',
         imageUrl: {

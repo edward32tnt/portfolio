@@ -1,30 +1,25 @@
 import { gql } from '@apollo/client'
 
 export const getMainInfo = gql`
-  query MainInfos {
-    mainInfo(where: { id: "clf0p0xk31tca0a1213fm7544" }) {
-      createdAt
-      currentTitle
-      fullName
+query MainInfos {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    createdAt
+    currentTitle
+    fullName
+    id
+    linkedin
+    resumeDownload {
+      url
+    }
+    images {
       id
-      linkedin
-      resumeDownload {
+      imageUrl {
         url
-      }
-      mainBackground {
-        ... on Image {
-          imageUrl {
-            id
-            url
-            size
-            width
-            height
-            fileName
-          }
-        }
       }
     }
   }
+}
+
 `
 
 export const getPersonInfo = gql`
@@ -130,5 +125,30 @@ mutation PublishGuessBook ($id: ID!)  {
     id
   }
 }
+
+`
+
+export const getProject = gql`
+query MainInfos {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    projects {
+      description
+      endTime
+      id
+      projectName
+      startTime
+      present
+      images {
+        id
+        imageUrl {
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+}
+
 
 `

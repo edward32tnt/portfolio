@@ -17,7 +17,7 @@ const EducationCard = (ed: EducationProps) => {
         <span>{ed.schoolName}</span>
       </p>
       <p className="text-sm text-stone-400 ">
-        {dayjs(ed.startTime).format('YYYY/MM')} -{' '}
+        {dayjs(ed.startTime).format('YYYY/MM')} ~{' '}
         {dayjs(ed.endTime).format('YYYY/MM')}
       </p>
       <p className="text-sm text-stone-400">{ed.major}</p>
