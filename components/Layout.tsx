@@ -26,7 +26,12 @@ export default function Layout({ children }: Props) {
   );
   return (
     <>
-      <div className="flex min-h-screen flex-col items-center justify-center py-2">
+      <div
+        className={
+          'flex min-h-screen flex-col items-center justify-center py-2' +
+          ' max-sm:h-full'
+        }
+      >
         <Head>
           <title>Portfolio</title>
           <link rel="icon" href="/favicon.ico" />
@@ -37,14 +42,19 @@ export default function Layout({ children }: Props) {
           loaded={particlesLoadeed}
           options={particlesOptions}
         />
-        <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
-          <section className="flex flex-row items-start gap-4 max-w-7xl flex-nowarp justify-start sm:w-full">
+        <main className="flex w-full flex-col items-center justify-center text-center">
+          <section className="flex flex-row items-start gap-4 max-w-7xl flex-nowarp justify-start">
             <MenuPanel />
             <MainAvatar />
-            <section className="w-full">{children}</section>
+            <section className="w-full max-sm:h-full">{children}</section>
           </section>
         </main>
-        <footer className="flex h-24 w-full items-center justify-center border-t">
+        <footer
+          className={
+            'flex h-24 w-full items-center justify-center border-t' +
+            ' max-sm:hidden'
+          }
+        >
           <a
             className="flex items-center justify-center gap-2"
             href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"

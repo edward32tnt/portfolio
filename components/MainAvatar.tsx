@@ -47,7 +47,11 @@ const Mainavatar = () => {
   }, [bgIndex]);
 
   return (
-    <section className="flex flex-col items-center h-[30rem] w-2/5 group">
+    <section
+      className={
+        'flex flex-col items-center h-[30rem] w-2/5 group' + ' max-sm:hidden'
+      }
+    >
       <div className="grow rounded-t-xl h-[15rem] w-full overflow-hidden">
         <Image
           alt=""
