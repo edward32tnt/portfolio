@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import WorkExCard, { WorkExperience } from '../../components/WorkExCard';
 import client from '../../libs/apollo';
 import { getWorkExperience } from '../../libs/apolloQuerys';
@@ -16,12 +16,19 @@ const WorkExpirence: NextPage<Props> = ({ works }) => {
   );
 };
 
-WorkExpirence.getInitialProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query({
     query: getWorkExperience
   });
+
+  const { mainInfo } = data;
+  const { workExperiences } = mainInfo;
+
   return {
-    works: data.mainInfo.workExperiences
+    props: {
+      works: workExperiences,
+      mainInfo: mainInfo
+    }
   };
 };
 

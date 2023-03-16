@@ -1,45 +1,48 @@
 import { gql } from '@apollo/client'
 
-export const getMainInfo = gql`
-query MainInfos {
-  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
-    createdAt
-    currentTitle
-    fullName
-    id
+
+const getMainInfo = `
     linkedin
-    resumeDownload {
-      url
-    }
+    id
+    fullName
+    currentTitle
     images {
       id
       imageUrl {
+        width
         url
+        height
       }
+      createdAt
     }
-  }
-}
-
+    resumeDownload {
+      url
+    }
 `
 
 export const getPersonInfo = gql`
-query MainInfos {
-  personInfo(where: {id: "clf23gqra4uk80czjfsi5gukc"}) {
-    textDatas {
-      id
-      title
-      value {
-        raw
+query MyQuery {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    ${getMainInfo}
+    personInfo {
+      textDatas {
+        id
+        title
+        value {
+          raw
+        }
       }
     }
   }
 }
+
 
 `
 
 export const getSkill = gql`
 query MainInfos {
   mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    ${getMainInfo}
     skills {
       id
       category
@@ -57,6 +60,7 @@ query MainInfos {
 export const getWorkExperience = gql`
 query MainInfos {
   mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    ${getMainInfo}
     workExperiences(orderBy: endTime_DESC) {
       id
       companyName
@@ -83,6 +87,7 @@ query MainInfos {
 export const getEducation = gql`
 query MainInfos {
   mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    ${getMainInfo}
     educations(orderBy: endTime_DESC) {
       id
       major
@@ -98,6 +103,9 @@ query MainInfos {
 
 export const getGuessbook = gql`
 query MainInfos {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    ${getMainInfo}
+  }
   guessBooks(orderBy: publishedAt_DESC) {
     nickname
     id
@@ -131,6 +139,7 @@ mutation PublishGuessBook ($id: ID!)  {
 export const getProject = gql`
 query MainInfos {
   mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    ${getMainInfo}
     projects {
       description
       endTime
