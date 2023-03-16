@@ -10,13 +10,18 @@ interface Props {
 }
 
 function MyApp(props: Props & AppProps) {
-  return (
-    <mainInfoContext.Provider value={{ mainInfo: props.pageProps.mainInfo }}>
-      <Layout>
-        <PageWithTransition {...props} />
-      </Layout>
-    </mainInfoContext.Provider>
-  );
+  const { mainInfo } = props.pageProps;
+  const { Component } = props;
+  if (mainInfo) {
+    return (
+      <mainInfoContext.Provider value={{ mainInfo: props.pageProps.mainInfo }}>
+        <Layout>
+          <PageWithTransition {...props} />
+        </Layout>
+      </mainInfoContext.Provider>
+    );
+  }
+  return <Component {...props} />;
 }
 
 export default MyApp;
