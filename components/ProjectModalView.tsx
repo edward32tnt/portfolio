@@ -38,7 +38,7 @@ const ProjectModalView = (props: ProjectCardProps & Props) => {
 
   return (
     <div
-      className=" fixed top-0 w-full h-full bg-black bg-opacity-60 ease-linear duration-200 flex justify-center items-center"
+      className=" z-50 fixed top-0 w-full h-full bg-black bg-opacity-60 ease-linear duration-200 flex justify-center items-center"
       onClick={(e) => handleClose(e)}
     >
       <div className=" text-black w-10/12 md:w-3/4 h-full md:h-2/3 p-4 rounded relative grid md:grid-cols-4">

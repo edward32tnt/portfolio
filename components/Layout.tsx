@@ -46,7 +46,9 @@ export default function Layout({ children }: Props) {
           <section className="flex flex-col md:flex-row items-start md:gap-4 w-full md:w-auto md:max-w-7xl flex-nowarp justify-start">
             <MenuPanel />
             <MainAvatar />
-            <section className="w-full h-full">{children}</section>
+            <section className="w-full h-[100vh] md:h-auto bg-white">
+              {children}
+            </section>
           </section>
         </main>
         <footer

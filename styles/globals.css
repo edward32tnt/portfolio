@@ -7,7 +7,7 @@
 }
 
 .big-btn {
-  @apply flex items-center gap-2 p-4 ease-linear duration-200 rounded-lg mb-1;
+  @apply flex items-center gap-2 p-4 ease-linear duration-200 md:rounded-lg mb-1;
 }
 .big-btn:hover {
   @apply hover:bg-gray-400 hover:shadow-xl hover:shadow-gray-200 border-white;

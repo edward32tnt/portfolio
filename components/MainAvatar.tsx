@@ -53,13 +53,13 @@ const Mainavatar = () => {
         ' '
       }
     >
-      <div className=" md:static absolute grow md:rounded-t-xl md:h-[15rem] w-full overflow-hidden">
+      <div className=" md:static absolute grow md:rounded-t-xl md:h-[15rem] w-full overflow-hidden ">
         <Image
           alt=""
           width={900}
           height={900}
           className={
-            'rounded-t-xl grow overflow-auto w-full h-full ' +
+            'rounded-t-xl grow overflow-auto w-full ' +
             classNames({
               'animate-slideScaleEnter': !isTransicationing,
               'animate-slideScaleLeave': isTransicationing
