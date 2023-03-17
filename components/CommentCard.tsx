@@ -11,7 +11,7 @@ export interface CommentProps {
 }
 const CommentCard = (c: CommentProps) => {
   return (
-    <div className="border-b p-4 flex flex-col gap-4">
+    <div className="border-b p-2 md:p-4 flex flex-col gap-4">
       <p className="flex gap-2 justify-between">
         <span className="text-stone-600 flex items-center gap-1">
           {c.nickname}

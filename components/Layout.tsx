@@ -28,8 +28,8 @@ export default function Layout({ children }: Props) {
     <>
       <div
         className={
-          'flex min-h-screen flex-col items-center justify-center py-2' +
-          ' max-sm:h-full'
+          ' md:min-h-screen w-full h-full flex flex-col items-center justify-center' +
+          ' '
         }
       >
         <Head>
@@ -42,17 +42,16 @@ export default function Layout({ children }: Props) {
           loaded={particlesLoadeed}
           options={particlesOptions}
         />
-        <main className="flex w-full flex-col items-center justify-center text-center">
-          <section className="flex flex-row items-start gap-4 max-w-7xl flex-nowarp justify-start">
+        <main className="flex md:flex-1 w-full flex-col items-center justify-center text-center">
+          <section className="flex flex-row items-start gap-4 w-full md:w-auto md:max-w-7xl flex-nowarp justify-start">
             <MenuPanel />
             <MainAvatar />
-            <section className="w-full max-sm:h-full">{children}</section>
+            <section className="w-full h-full">{children}</section>
           </section>
         </main>
         <footer
           className={
-            'flex h-24 w-full items-center justify-center border-t' +
-            ' max-sm:hidden'
+            ' hidden md:flex h-24 w-full items-center justify-center border-t'
           }
         >
           <a

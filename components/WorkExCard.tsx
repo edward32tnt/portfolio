@@ -50,14 +50,14 @@ export default (wx: WorkExperience) => {
         className="p-2 text-md break-words"
         components={{
           ul: ({ children }) => (
-            <ul className=" list-inside list-disc">{children}</ul>
+            <ul className=" list-inside list-disc ">{children}</ul>
           )
         }}
       >
         {wx.description}
       </ReactMarkdown>
       {wx.tags && (
-        <p className="flex gap-2 my-4 items-center">
+        <p className="flex gap-2 my-4 items-center flex-wrap">
           <TagIcon className="w-4 h-4" />
           <span>Tags:</span>
           {wx.tags.map((x) => {

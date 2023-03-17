@@ -51,7 +51,7 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
   return (
     <div className="p-4 flex flex-col gap-4">
       <form
-        className="rounded p-4 bg-gray-50 flex flex-col gap-2"
+        className="rounded md:p-4 md:bg-gray-50 flex flex-col gap-2"
         onSubmit={handleSubmit}
       >
         <input
