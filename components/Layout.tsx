@@ -43,7 +43,7 @@ export default function Layout({ children }: Props) {
           options={particlesOptions}
         />
         <main className="flex md:flex-1 w-full flex-col items-center justify-center text-center">
-          <section className="flex flex-row items-start gap-4 w-full md:w-auto md:max-w-7xl flex-nowarp justify-start">
+          <section className="flex flex-col md:flex-row items-start md:gap-4 w-full md:w-auto md:max-w-7xl flex-nowarp justify-start">
             <MenuPanel />
             <MainAvatar />
             <section className="w-full h-full">{children}</section>

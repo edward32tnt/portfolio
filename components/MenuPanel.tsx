@@ -9,7 +9,7 @@ const MenuPanel = () => {
   return (
     <section
       className={
-        ' fixed top-0 md:static rounded-xl text-left w-full md:w-1/6 min-w-2/8  bg-white md:bg-none z-50 md:z-auto md:rounded ' +
+        ' md:static rounded-xl text-left w-full md:w-1/6 min-w-2/8  bg-white md:bg-none z-50 md:z-auto md:rounded ' +
         ' '
       }
     >
