@@ -16,23 +16,25 @@ const MenuPanel = () => {
   }, []);
   useEffect(() => {
     handleRouteChange();
+    window.addEventListener('resize', handleRouteChange);
+    return () => window.removeEventListener('resize', handleRouteChange);
   }, []);
   return (
     <section
       className={
-        ' md:static text-left w-full md:w-1/6 min-w-2/8  bg-white md:bg-none z-50 md:z-auto md:rounded '
+        ' md:static text-left w-full md:w-1/6 min-w-2/8  bg-white md:bg-inherit z-50 md:z-auto md:rounded '
       }
     >
       <div
-        className=" flex justify-between md:hidden p-2"
+        className=" flex justify-between items-center md:hidden p-6"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span> {currentPage?.name}</span>
-        <Bars4Icon className="w-6 h-6" />
+        <span className=" text-stone-600"> {currentPage?.name}</span>
+        <Bars4Icon className="w-6 h-6 " />
       </div>
       <div
         className={
-          'md:flex md:flex-col md:w-30 md:static md:top-0 absolute top-8 bg-white md:bg-none w-full md:w-auto ' +
+          ' border md:border-0 shadow-sm md:shadow-none md:flex md:flex-col md:w-30 md:static md:top-0 absolute top-20 right-4 bg-white md:bg-inherit w-10/12 md:w-auto ' +
           classNames({
             hidden: !isOpen
           })
