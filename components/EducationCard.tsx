@@ -14,7 +14,7 @@ const EducationCard = (ed: EducationProps) => {
     <div className="border-b p-2 w-full">
       <p className=" text-xl text-stone-500 flex gap-2 items-end my-2">
         <BuildingLibraryIcon className="w-8 h-8" />
-        <span>{ed.schoolName}</span>
+        <span className="text-sm md:text-xl">{ed.schoolName}</span>
       </p>
       <p className="text-sm text-stone-400 ">
         {dayjs(ed.startTime).format('YYYY/MM')} ~{' '}

@@ -37,7 +37,7 @@ const ProjectCard = (pc: ProjectCardProps) => {
           document.body
         )}
       <div
-        className="flex justify-center flex-col items-center text-center text-stone-500 cursor-pointer "
+        className="flex justify-center flex-col items-center text-center text-stone-500 cursor-pointer border-b md:border-b-0"
         onClick={handleOpenDetail}
       >
         {pc.images.length > 0 && (

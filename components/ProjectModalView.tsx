@@ -38,22 +38,22 @@ const ProjectModalView = (props: ProjectCardProps & Props) => {
 
   return (
     <div
-      className=" fixed top-0 w-full h-full bg-black bg-opacity-60 ease-linear duration-200 flex justify-center items-center"
+      className=" z-50 fixed top-0 w-full h-full bg-black bg-opacity-60 ease-linear duration-200 flex justify-center items-center"
       onClick={(e) => handleClose(e)}
     >
-      <div className=" text-black w-3/4 h-2/3 p-4 rounded relative grid grid-cols-4">
+      <div className=" text-black w-10/12 md:w-3/4 h-full md:h-2/3 p-4 rounded relative grid md:grid-cols-4">
         <XCircleIcon
           onClick={() => props.onClose()}
-          className="text-white cursor-pointer absolute -top-8 -right-8 w-8 h-8 animate-in fade-in duration-200"
+          className="text-white cursor-pointer absolute top-0 -right-8 md:-top-8 md:-right-8 w-8 h-8 animate-in fade-in duration-200"
         />
-        <div className=" col-span-3 rounded-bl rounded-tl bg-white animate-in h-full fade-in slide-in-from-left ease-in-out overflow-scroll duration-200 flex flex-col justify-between items-center border-r p-4">
+        <div className=" md:col-span-3 md:rounded-bl md:rounded-tl bg-white animate-in h-full fade-in slide-in-from-top-0 md:slide-in-from-left ease-in-out overflow-scroll duration-200 flex flex-col justify-between items-center border-r p-4">
           <Image
             alt=""
             width={bgList[bgIndex].width}
             height={bgList[bgIndex].height}
             quality={100}
             className={
-              'repeat-1 fill-mode-forwards h-5/6 w-auto ' +
+              'repeat-1 fill-mode-forwards h-40 md:h-5/6 w-auto ' +
               classNames({
                 'animate-in fade-in zoom-in-50': !isTransicationing,
                 'animate-out fade-out zoom-out-50': isTransicationing
@@ -78,7 +78,7 @@ const ProjectModalView = (props: ProjectCardProps & Props) => {
             })}
           </div>
         </div>
-        <div className="bg-white rounded-br rounded-tr animate-in fade-in slide-in-from-right ease-in-out p-4 overflow-scroll duration-200">
+        <div className="bg-white rounded-br rounded-tr animate-in fade-in slide-in-from-bottom-0 md:slide-in-from-right ease-in-out p-4 overflow-scroll duration-200">
           <p className="text-xl">{props.projectName}</p>
           <p className="text-sm text-stone-500 my-1">{props.role}</p>
           <p className="text-sm text-stone-500 my-1">

@@ -8,7 +8,7 @@ interface Props {
 
 const Project: NextPage<Props> = ({ projects }) => {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid md:grid-cols-2 gap-4">
       {projects.map((x) => (
         <ProjectCard {...x} key={'project-card-' + x.id} />
       ))}

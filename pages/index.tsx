@@ -31,8 +31,8 @@ const Home: NextPage<Props> = ({ personInfo }) => {
   const { textDatas } = personInfo;
   const bio = textDatas[0];
   return (
-    <div className="grid grid-cols-2 gap-1">
-      <UnitCard className=" col-span-2 border-b p-3">
+    <div className="grid md:grid-cols-2 gap-1">
+      <UnitCard className=" md:col-span-2 border-b p-3">
         <p className=" text-stone-700 text-lg">{bio.title}</p>
         <p
           className=" text-md text-stone-500 text-left mt-1"

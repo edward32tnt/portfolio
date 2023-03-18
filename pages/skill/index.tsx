@@ -21,7 +21,7 @@ interface Props {
 const Skill: NextPage<Props> = ({ skills }) => {
   const [expandId, setExpandId] = useState('');
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="grid md:grid-cols-2 gap-2">
       {skills.map((x) => (
         <div
           key={'skill-category-' + x.id}
