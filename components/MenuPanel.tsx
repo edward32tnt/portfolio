@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { useCallback, useEffect, useState } from 'react';
 
 const MenuPanel = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const { asPath } = useRouter();
   const currentPage = menuData.find((x) => x.route === asPath);
   const handleRouteChange = useCallback(() => {
@@ -36,8 +36,8 @@ const MenuPanel = () => {
         className={
           ' border md:border-0 shadow-sm md:shadow-none md:flex md:flex-col md:w-30 md:static md:top-0 absolute top-20 right-4 bg-white md:bg-inherit w-10/12 md:w-auto ' +
           classNames({
-            hidden: !isOpen
-            // 'md:static': true
+            hidden: !isOpen,
+            'md:static': true
           })
         }
       >
