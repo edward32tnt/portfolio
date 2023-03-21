@@ -38,7 +38,7 @@ export default function Layout({ children }: Props) {
         </Head>
         <Particles
           id="Particles-here"
-          className="w-full h-full absolute"
+          className="w-full h-full absolute -z-50"
           init={particlesInit}
           loaded={particlesLoadeed}
           options={particlesOptions}
