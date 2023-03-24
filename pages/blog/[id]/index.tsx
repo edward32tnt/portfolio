@@ -2,14 +2,18 @@ import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import notion from '../../../libs/notion';
-import { BackspaceIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline';
 import dayjs from 'dayjs';
 import { AppProps } from 'next/app';
 import ReactMarkdown from 'react-markdown';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Loading from '../../../components/Loading';
 import Image from 'next/image';
 import Head from 'next/head';
+import { loadFull } from 'tsparticles';
+import Particles from 'react-tsparticles';
+import { particlesOptions } from '../../../libs/particlesOptions';
+import type { Container, Engine } from 'tsparticles-engine';
 
 const PageDetail: NextPage<AppProps> = ({ pageProps }) => {
   const { page } = pageProps;
@@ -29,26 +33,53 @@ const PageDetail: NextPage<AppProps> = ({ pageProps }) => {
 
   const animateClass =
     ' animate-in fade-in-10 slide-in-from-bottm-5 duration-300 ease-linear ';
+
+  const particlesInit = useCallback(async (main: Engine) => {
+    // console.log(main);
+    await loadFull(main);
+  }, []);
+
+  const particlesLoadeed = useCallback(
+    async (container: Container | undefined) => {
+      await console.log(container);
+    },
+    []
+  );
   return (
     <>
       <Head>
         <title>
-          {page.icon.emoji} {page.properties.Name.title[0].plain_text}
+          Edward32tnt - portfolio - {page.icon.emoji}{' '}
+          {page.properties.Name.title[0].plain_text}
         </title>
       </Head>
+      <Particles
+        id="Particles-here"
+        className="w-full h-full absolute -z-50"
+        init={particlesInit}
+        loaded={particlesLoadeed}
+        options={particlesOptions}
+      />
 
       <div
-        className={'flex flex-col md:bg-black md:bg-opacity-10 ' + animateClass}
+        className={
+          'flex flex-col justify-center md:gap-4 md:p-4 items-center md:relative' +
+          animateClass
+        }
       >
         <Link
           href="/blog"
-          className="py-2 px-4 flex items-center gap-2 bg-black  text-white md:absolute md:top-10 md:left-10 md:bg-inherit md:rounded"
+          className={
+            'w-full p-4 flex items-center gap-2 bg-black text-white ' +
+            'md:py-2 md:px-8 md:w-auto md:bg-black md:rounded-xl md:border-2 md:shadow ' +
+            'md:hover:bg-white md:hover:text-black '
+          }
         >
-          <BackspaceIcon className="w-6 h-6" />
+          <ArrowLeftCircleIcon className="w-6 h-6" />
           <span className="hidden md:block uppercase">List</span>
           <span className="block md:hidden uppercase">Back</span>
         </Link>
-        <div className=" bg-white rounded flex flex-col gap-2 pb-4 md:m-10 md:rounded md:shadow ">
+        <div className=" bg-white rounded flex flex-col gap-2 pb-4 md:w-8/12  md:rounded md:shadow-xl ">
           {page.cover && (
             <div className="h-[10rem] md:h-[10rem] overflow-hidden">
               <Image
