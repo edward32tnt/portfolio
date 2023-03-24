@@ -162,3 +162,22 @@ query MainInfos {
 
 
 `
+
+export const getBlog = gql`
+query MainInfos {
+  mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
+    ${getMainInfo}
+  }
+  blogs {
+    id
+    title
+    body
+    category
+    createdAt
+    likeCount
+    tags {
+      title
+    }
+  }
+}
+`
