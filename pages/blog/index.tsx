@@ -1,5 +1,4 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { useCallback, useState } from 'react';
 import BlogCard, { BlogProp } from '../../components/BlogCard';
 import client from '../../libs/apollo';
 import { getBlog } from '../../libs/apolloQuerys';
@@ -11,7 +10,7 @@ interface Props {
 
 const Blog: NextPage<Props> = ({ blogs }) => {
   return (
-    <span className="grid grid-cols-1 md:grid-cols-2 gap-2">
+    <span className="grid grid-cols-1 md:grid-cols-2 gap-1">
       {blogs.map((x) => (
         <BlogCard key={'blog-card-' + x.id} {...x} />
       ))}
@@ -27,8 +26,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     database_id: 'b9124c8029994e5588c74686be61b076'
   });
   const { results } = dbs;
-
-  console.log('blogs', dbs);
 
   return {
     props: {
