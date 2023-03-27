@@ -1,18 +1,19 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import { useCallback } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import MenuPanel from './MenuPanel';
-import MainAvatar, { MainInfo } from './MainAvatar';
+import MainAvatar from './MainAvatar';
 import Particles from 'react-tsparticles';
 import type { Container, Engine } from 'tsparticles-engine';
 import { loadFull } from 'tsparticles';
 import { particlesOptions } from '../libs/particlesOptions';
+import Footer from './Footer';
 
 interface Props {
   children?: React.ReactElement;
 }
-export default function Layout({ children }: Props) {
+export default function Layout(props: Props) {
+  const { children } = props;
   const particlesInit = useCallback(async (main: Engine) => {
     // console.log(main);
     await loadFull(main);
@@ -52,21 +53,7 @@ export default function Layout({ children }: Props) {
             </section>
           </section>
         </main>
-        <footer
-          className={
-            ' hidden md:flex h-24 w-full items-center justify-center border-t'
-          }
-        >
-          <a
-            className="flex items-center justify-center gap-2"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by{' '}
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </a>
-        </footer>
+        <Footer />
       </div>
       <Analytics />
     </>

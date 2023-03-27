@@ -14,9 +14,25 @@ import { loadFull } from 'tsparticles';
 import Particles from 'react-tsparticles';
 import { particlesOptions } from '../../../libs/particlesOptions';
 import type { Container, Engine } from 'tsparticles-engine';
+import Footer from '../../../components/Footer';
+import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
-const PageDetail: NextPage<AppProps> = ({ pageProps }) => {
-  const { page } = pageProps;
+interface Props {
+  page: PageObjectResponse;
+}
+
+const PageDetail: NextPage<AppProps> = ({ pageProps: { page } }) => {
+  const particlesInit = useCallback(async (main: Engine) => {
+    // console.log(main);
+    await loadFull(main);
+  }, []);
+
+  const particlesLoadeed = useCallback(
+    async (container: Container | undefined) => {
+      await console.log(container);
+    },
+    []
+  );
   const [mdString, setMdString] = useState('');
   const router = useRouter();
   useEffect(() => {
@@ -34,23 +50,24 @@ const PageDetail: NextPage<AppProps> = ({ pageProps }) => {
   const animateClass =
     ' animate-in fade-in-10 slide-in-from-bottm-5 duration-300 ease-linear ';
 
-  const particlesInit = useCallback(async (main: Engine) => {
-    // console.log(main);
-    await loadFull(main);
-  }, []);
+  const emoji = page.icon?.type === 'emoji' ? page.icon.emoji : '';
+  const titleText =
+    page.properties.Name.type === 'title'
+      ? page.properties.Name.title[0].plain_text
+      : '';
+  const pageCover =
+    page.cover?.type === 'external' ? page.cover.external.url : '';
 
-  const particlesLoadeed = useCallback(
-    async (container: Container | undefined) => {
-      await console.log(container);
-    },
-    []
-  );
   return (
-    <>
+    <div
+      className={
+        'flex flex-col justify-center md:gap-4 items-center md:relative' +
+        animateClass
+      }
+    >
       <Head>
         <title>
-          Edward32tnt - portfolio - {page.icon.emoji}{' '}
-          {page.properties.Name.title[0].plain_text}
+          Edward32tnt-portfolio-{emoji} {titleText}
         </title>
       </Head>
       <Particles
@@ -61,72 +78,64 @@ const PageDetail: NextPage<AppProps> = ({ pageProps }) => {
         options={particlesOptions}
       />
 
-      <div
+      <Link
+        href="/blog"
         className={
-          'flex flex-col justify-center md:gap-4 md:p-4 items-center md:relative' +
-          animateClass
+          'w-full p-4 flex items-center gap-2 bg-black text-white ' +
+          'md:mt-4 md:py-2 md:px-8 md:w-auto md:bg-black md:rounded-xl md:border-2 md:shadow ' +
+          'md:hover:bg-white md:hover:text-black '
         }
       >
-        <Link
-          href="/blog"
-          className={
-            'w-full p-4 flex items-center gap-2 bg-black text-white ' +
-            'md:py-2 md:px-8 md:w-auto md:bg-black md:rounded-xl md:border-2 md:shadow ' +
-            'md:hover:bg-white md:hover:text-black '
-          }
-        >
-          <ArrowLeftCircleIcon className="w-6 h-6" />
-          <span className="hidden md:block uppercase">List</span>
-          <span className="block md:hidden uppercase">Back</span>
-        </Link>
-        <div className=" bg-white rounded flex flex-col gap-2 pb-4 md:w-8/12  md:rounded md:shadow-xl ">
-          {page.cover && (
-            <div className="h-[10rem] md:h-[10rem] overflow-hidden">
-              <Image
-                className="w-full md:rounded"
-                src={page.cover.external.url}
-                width={900}
-                height={900}
-                alt={'banner'}
-              />
-            </div>
-          )}
-
-          <div className="px-4 py-4 md:flex md:justify-between md:items-center border-b">
-            <h1 className="text-4xl">
-              {page.icon.emoji} {page.properties.Name.title[0].plain_text}
-            </h1>
-            <span className="text-sm text-stone-400">
-              {dayjs(page.created_time).format('YYYY-MM-DD')}
-            </span>
+        <ArrowLeftCircleIcon className="w-6 h-6" />
+        <span className="hidden md:block uppercase">List</span>
+        <span className="block md:hidden uppercase">Back</span>
+      </Link>
+      <div className=" bg-white rounded flex flex-col gap-2 pb-4">
+        {page.cover && (
+          <div className="h-[10rem] md:h-[10rem] overflow-hidden">
+            <Image
+              className="w-full md:rounded"
+              src={pageCover}
+              width={900}
+              height={900}
+              alt={'banner'}
+            />
           </div>
-          {mdString.length > 0 ? (
-            <ReactMarkdown
-              className={animateClass + ' px-4'}
-              components={{
-                h2: ({ children }) => (
-                  <h2 className="text-2xl pb-1">{children}</h2>
-                ),
-                ul: ({ children }) => (
-                  <ul className="pl-4 list-inside list-disc py-1">
-                    {children}
-                  </ul>
-                ),
-                ol: ({ children }) => (
-                  <ol className="pl-4 list-inside list-decimal py-1">
-                    {children}
-                  </ol>
-                )
-              }}
-            >
-              {mdString}
-            </ReactMarkdown>
-          ) : (
-            <Loading />
-          )}
+        )}
+
+        <div className="px-4 py-4 md:flex md:justify-between md:items-center border-b">
+          <h1 className="text-4xl">
+            {emoji} {titleText}
+          </h1>
+          <span className="text-sm text-stone-400">
+            {dayjs(page.created_time).format('YYYY-MM-DD')}
+          </span>
         </div>
+        {mdString.length > 0 ? (
+          <ReactMarkdown
+            className={animateClass + ' px-4 '}
+            components={{
+              h2: ({ children }) => (
+                <h2 className="text-2xl pb-1">{children}</h2>
+              ),
+              ul: ({ children }) => (
+                <ul className="pl-4 list-inside list-disc py-1">{children}</ul>
+              ),
+              ol: ({ children }) => (
+                <ol className="pl-4 list-inside list-decimal py-1">
+                  {children}
+                </ol>
+              )
+            }}
+          >
+            {mdString}
+          </ReactMarkdown>
+        ) : (
+          <Loading />
+        )}
       </div>
-    </>
+      <Footer />
+    </div>
   );
 };
 
@@ -135,6 +144,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const page = await notion.pages.retrieve({
     page_id: blockId as string
   });
+
   return {
     props: {
       page
