@@ -34,7 +34,6 @@ export interface BlogProp {
 
 export default function (props: BlogProp) {
   const { id, properties, cover, icon } = props;
-  console.log(props);
   return (
     <Link
       className="rounded flex flex-col justify-start items-start shadow gap-1"
@@ -42,13 +41,13 @@ export default function (props: BlogProp) {
     >
       <Image
         className="w-full rounded-tl rounded-tr"
-        src={cover.external.url}
+        src={cover?.external.url}
         alt={properties.Name.title[0].plain_text}
         width={300}
         height={200}
       />
       <p className="text-xl break-words text-stone-500 p-2">
-        {icon.emoji} {properties.Name.title[0].plain_text}
+        {icon?.emoji} {properties.Name.title[0].plain_text}
       </p>
     </Link>
   );

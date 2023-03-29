@@ -23,7 +23,18 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const { mainInfo } = data;
 
   const dbs = await notion.databases.query({
-    database_id: 'b9124c8029994e5588c74686be61b076'
+    database_id: 'b9124c8029994e5588c74686be61b076',
+    filter: {
+      and: [
+        {
+          property: 'Status',
+          type: 'status',
+          status: {
+            equals: 'Done'
+          }
+        }
+      ]
+    }
   });
   const { results } = dbs;
 
