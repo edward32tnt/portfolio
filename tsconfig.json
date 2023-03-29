@@ -22,7 +22,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "tests/test.notion.mjs",
+    "tests/test.notion.mjs"
   ],
   "exclude": [
     "node_modules"

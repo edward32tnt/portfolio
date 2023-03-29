@@ -5,7 +5,7 @@ import {
   TrophyIcon,
   BookOpenIcon,
   ChatBubbleBottomCenterTextIcon,
-  IdentificationIcon,
+  BookmarkIcon,
 } from '@heroicons/react/24/outline'
 import {
   HomeIcon as HomeActive,
@@ -14,7 +14,7 @@ import {
   TrophyIcon as ProjectActive,
   BookOpenIcon as EducationActive,
   ChatBubbleBottomCenterTextIcon as GuessBookActive,
-  IdentificationIcon as AboutActive,
+  BookmarkIcon as BlogActive,
 } from '@heroicons/react/24/solid'
 
 export const menuData = [
@@ -24,5 +24,6 @@ export const menuData = [
   { name: 'Expirence', icon: GlobeAsiaAustraliaIcon, activeIcon: WorkActive, route: '/work-expirence' },
   { name: 'Project', icon: TrophyIcon, activeIcon: ProjectActive, route: '/project' },
   { name: 'GuessBook', icon: ChatBubbleBottomCenterTextIcon, activeIcon: GuessBookActive, route: '/guess-book' },
+  { name: 'Blog', icon: BookmarkIcon, activeIcon: BlogActive, route: '/blog' },
   // { name: 'About', icon: IdentificationIcon, activeIcon: AboutActive, route: '/about' },
 ]

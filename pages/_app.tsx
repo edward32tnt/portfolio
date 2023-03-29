@@ -14,7 +14,7 @@ function MyApp(props: Props & AppProps) {
   const { Component } = props;
   if (mainInfo) {
     return (
-      <mainInfoContext.Provider value={{ mainInfo: props.pageProps.mainInfo }}>
+      <mainInfoContext.Provider value={{ mainInfo }}>
         <Layout>
           <PageWithTransition {...props} />
         </Layout>
