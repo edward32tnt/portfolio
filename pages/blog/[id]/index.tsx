@@ -21,7 +21,7 @@ interface Props {
   page: PageObjectResponse;
 }
 
-const PageDetail: NextPage<AppProps> = ({ pageProps: { page } }) => {
+const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
   const particlesInit = useCallback(async (main: Engine) => {
     // console.log(main);
     await loadFull(main);
@@ -58,17 +58,16 @@ const PageDetail: NextPage<AppProps> = ({ pageProps: { page } }) => {
   const pageCover =
     page.cover?.type === 'external' ? page.cover.external.url : '';
 
+  const title = `Edward32tnt-portfolio-${emoji} ${titleText}`;
   return (
     <div
       className={
-        'flex flex-col justify-center md:gap-4 items-center md:relative' +
+        'flex flex-col justify-center md:gap-4 items-center md:relative ' +
         animateClass
       }
     >
       <Head>
-        <title>
-          Edward32tnt-portfolio-{emoji} {titleText}
-        </title>
+        <title>{title}</title>
       </Head>
       <Particles
         id="Particles-here"
@@ -90,7 +89,7 @@ const PageDetail: NextPage<AppProps> = ({ pageProps: { page } }) => {
         <span className="hidden md:block uppercase">List</span>
         <span className="block md:hidden uppercase">Back</span>
       </Link>
-      <div className=" bg-white rounded flex flex-col gap-2 pb-4">
+      <div className=" bg-white md:rounded flex flex-col gap-2 pb-4 max-w-full md:max-w-screen-lg overflow-hidden">
         {page.cover && (
           <div className="h-[10rem] md:h-[10rem] overflow-hidden">
             <Image
@@ -108,24 +107,51 @@ const PageDetail: NextPage<AppProps> = ({ pageProps: { page } }) => {
             {emoji} {titleText}
           </h1>
           <span className="text-sm text-stone-400">
-            {dayjs(page.created_time).format('YYYY-MM-DD')}
+            {dayjs(page.last_edited_time).format('YYYY-MM-DD HH:mm:ss')}
           </span>
         </div>
         {mdString.length > 0 ? (
           <ReactMarkdown
-            className={animateClass + ' px-4 '}
+            className={animateClass + ' p-4 md:shadow-md'}
             components={{
               h2: ({ children }) => (
                 <h2 className="text-2xl pb-1">{children}</h2>
               ),
               ul: ({ children }) => (
-                <ul className="pl-4 list-inside list-disc py-1">{children}</ul>
+                <ul className="pl-3 list-inside list-[revert] py-1 text-lg">
+                  {children}
+                </ul>
               ),
               ol: ({ children }) => (
-                <ol className="pl-4 list-inside list-decimal py-1">
+                <ol className="pl-3 list-inside list-decimal py-1 text-lg">
                   {children}
                 </ol>
-              )
+              ),
+              code: ({ children }) => (
+                <div className="md:ml-3 my-8 bg-gray-200 p-4 overflow-scroll">
+                  <code>{children}</code>
+                </div>
+              ),
+              p: ({ children }) => (
+                <span className="my-2 text-lg">{children}</span>
+              ),
+              blockquote: ({ children }) => (
+                <blockquote className=" border-l-4 md:ml-3 my-8 p-4 bg-gray-50 text-sm break-words">
+                  {children}
+                </blockquote>
+              ),
+              img: (props) =>
+                props.src ? (
+                  <Image
+                    className=" shadow-md md:ml-4 my-8"
+                    width={500}
+                    height={400}
+                    src={props.src}
+                    alt={props.alt || 'notion-img'}
+                  />
+                ) : (
+                  <span></span>
+                )
             }}
           >
             {mdString}
