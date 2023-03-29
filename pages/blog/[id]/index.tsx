@@ -58,6 +58,10 @@ const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
   const pageCover =
     page.cover?.type === 'external' ? page.cover.external.url : '';
 
+  const category =
+    page.properties.Category.type === 'multi_select'
+      ? page.properties.Category.multi_select[0].name
+      : '';
   const title = `Edward32tnt-portfolio-${emoji} ${titleText}`;
   return (
     <div
@@ -102,20 +106,25 @@ const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
           </div>
         )}
 
-        <div className="px-4 py-4 md:flex md:justify-between md:items-center border-b">
+        <div className="px-4 pt-4 md:flex md:justify-between md:items-center ">
           <h1 className="text-4xl">
             {emoji} {titleText}
           </h1>
           <span className="text-sm text-stone-400">
-            {dayjs(page.last_edited_time).format('YYYY-MM-DD HH:mm:ss')}
+            {dayjs(page.created_time).format('YYYY-MM-DD')} M:
+            {dayjs(page.last_edited_time).format('YYYY-MM-DD')}
           </span>
+        </div>
+        <div className="border-b pb-4 px-4 flex gap-2 justify-start items-center">
+          <span>Category</span>
+          <span className="rounded bg-sky-200 px-2 ">{category}</span>
         </div>
         {mdString.length > 0 ? (
           <ReactMarkdown
             className={animateClass + ' p-4 md:shadow-md'}
             components={{
               h2: ({ children }) => (
-                <h2 className="text-2xl pb-1">{children}</h2>
+                <h2 className="text-2xl pb-1 my-2">{children}</h2>
               ),
               ul: ({ children }) => (
                 <ul className="pl-3 list-inside list-[revert] py-1 text-lg">
@@ -127,23 +136,28 @@ const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
                   {children}
                 </ol>
               ),
-              code: ({ children }) => (
-                <div className="md:ml-3 my-8 bg-gray-200 p-4 overflow-scroll">
-                  <code>{children}</code>
-                </div>
-              ),
+              code: (props) =>
+                props.inline ? (
+                  <span className="px-1 bg-gray-200 text-sky-600">
+                    <code>{props.children}</code>
+                  </span>
+                ) : (
+                  <div className="md:ml-3 my-2 bg-gray-200 p-4 overflow-scroll">
+                    <code>{props.children}</code>
+                  </div>
+                ),
               p: ({ children }) => (
                 <span className="my-2 text-lg">{children}</span>
               ),
               blockquote: ({ children }) => (
-                <blockquote className=" border-l-4 md:ml-3 my-8 p-4 bg-gray-50 text-sm break-words">
+                <blockquote className=" border-l-4 md:ml-3 my-2 p-4 bg-gray-50 text-sm break-words">
                   {children}
                 </blockquote>
               ),
               img: (props) =>
                 props.src ? (
                   <Image
-                    className=" shadow-md md:ml-4 my-8"
+                    className=" shadow-md md:ml-4 my-2"
                     width={500}
                     height={400}
                     src={props.src}
