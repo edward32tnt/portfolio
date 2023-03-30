@@ -16,6 +16,7 @@ import { particlesOptions } from '../../../libs/particlesOptions';
 import type { Container, Engine } from 'tsparticles-engine';
 import Footer from '../../../components/Footer';
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import PlaceHolder from '../../../public/placeholder.png';
 
 interface Props {
   page: PageObjectResponse;
@@ -45,7 +46,7 @@ const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
         setMdString(mdString);
       })();
     }
-  }, [router.query, router.isReady]);
+  }, [router.query]);
 
   const animateClass =
     ' animate-in fade-in-10 slide-in-from-bottm-5 duration-300 ease-linear ';
@@ -95,12 +96,14 @@ const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
       </Link>
       <div className=" bg-white md:rounded flex flex-col gap-2 pb-4 max-w-full md:max-w-screen-lg overflow-hidden">
         {page.cover && (
-          <div className="h-[10rem] md:h-[10rem] overflow-hidden">
+          <div className="min-w-full h-[10rem] md:h-[10rem] overflow-hidden">
             <Image
-              className="w-full md:rounded"
+              className="min-w-full md:rounded"
               src={pageCover}
-              width={900}
-              height={900}
+              placeholder="blur"
+              blurDataURL={PlaceHolder.blurDataURL}
+              width={1024}
+              height={1024}
               alt={'banner'}
             />
           </div>
@@ -158,8 +161,8 @@ const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
                 props.src ? (
                   <Image
                     className=" shadow-md md:ml-4 my-2"
-                    width={500}
-                    height={400}
+                    width={800}
+                    height={800}
                     src={props.src}
                     alt={props.alt || 'notion-img'}
                   />
