@@ -10,7 +10,7 @@ interface Props {
 
 const Blog: NextPage<Props> = ({ blogs }) => {
   return (
-    <span className="grid grid-cols-1 md:grid-cols-2 gap-1">
+    <span className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {blogs.map((x) => (
         <BlogCard key={'blog-card-' + x.id} {...x} />
       ))}
@@ -24,17 +24,20 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   const dbs = await notion.databases.query({
     database_id: 'b9124c8029994e5588c74686be61b076',
-    filter: {
-      and: [
-        {
-          property: 'Status',
-          type: 'status',
-          status: {
-            equals: 'Done'
+    filter:
+      process.env.NODE_ENV === 'production'
+        ? {
+            and: [
+              {
+                property: 'Status',
+                type: 'status',
+                status: {
+                  equals: 'Done'
+                }
+              }
+            ]
           }
-        }
-      ]
-    }
+        : undefined
   });
   const { results } = dbs;
 

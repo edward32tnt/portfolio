@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import dayjs from 'dayjs';
+import PlaceHolder from '../public/placeholder.png';
 
 export interface BlogProp {
   object: 'page';
@@ -34,21 +35,26 @@ export interface BlogProp {
 
 export default function (props: BlogProp) {
   const { id, properties, cover, icon } = props;
+  const title = `${icon?.emoji} ${
+    properties?.Name?.title[0].plain_text || ''
+  } `;
   return (
     <Link
       className="rounded flex flex-col justify-start items-start shadow gap-1"
       href={'/blog/' + id}
     >
-      <Image
-        className="w-full rounded-tl rounded-tr"
-        src={cover?.external.url}
-        alt={properties.Name.title[0].plain_text}
-        width={300}
-        height={200}
-      />
-      <p className="text-xl break-words text-stone-500 p-2">
-        {icon?.emoji} {properties.Name.title[0].plain_text}
-      </p>
+      <div className="rounded-tl rounded-tr w-full h-[10rem] overflow-hidden flex justify-center items-center">
+        <Image
+          className="w-full"
+          src={cover?.external.url}
+          alt={title}
+          placeholder="blur"
+          blurDataURL={PlaceHolder.blurDataURL}
+          width={300}
+          height={300}
+        />
+      </div>
+      <p className="text-xl break-words text-stone-500 p-2">{title}</p>
     </Link>
   );
 }
