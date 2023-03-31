@@ -17,6 +17,8 @@ import type { Container, Engine } from 'tsparticles-engine';
 import Footer from '../../../components/Footer';
 import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import PlaceHolder from '../../../public/placeholder.png';
+import { Prism } from 'react-syntax-highlighter';
+import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 interface Props {
   page: PageObjectResponse;
@@ -139,16 +141,22 @@ const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
                   {children}
                 </ol>
               ),
-              code: (props) =>
-                props.inline ? (
+              code: (props) => {
+                const match = /language-(\w+)/.exec(props.className || '');
+                return props.inline ? (
                   <span className="px-1 bg-gray-200 text-sky-600">
                     <code>{props.children}</code>
                   </span>
                 ) : (
-                  <div className="md:ml-3 my-2 bg-gray-200 p-4 overflow-scroll">
-                    <code>{props.children}</code>
-                  </div>
-                ),
+                  <Prism
+                    style={materialDark}
+                    language={match ? match[1] : ''}
+                    PreTag="div"
+                  >
+                    {props.children.join('\n')}
+                  </Prism>
+                );
+              },
               p: ({ children }) => (
                 <span className="my-2 text-lg">{children}</span>
               ),
