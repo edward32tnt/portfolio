@@ -19,6 +19,7 @@ import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import PlaceHolder from '../../../public/placeholder.png';
 import { Prism } from 'react-syntax-highlighter';
 import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import * as mdComponents from '../../../components/MarkdownComponents';
 
 interface Props {
   page: PageObjectResponse;
@@ -127,57 +128,7 @@ const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
         {mdString.length > 0 ? (
           <ReactMarkdown
             className={animateClass + ' p-4 md:shadow-md'}
-            components={{
-              h2: ({ children }) => (
-                <h2 className="text-2xl pb-1 my-2">{children}</h2>
-              ),
-              ul: ({ children }) => (
-                <ul className="pl-3 list-inside list-[revert] py-1 text-lg">
-                  {children}
-                </ul>
-              ),
-              ol: ({ children }) => (
-                <ol className="pl-3 list-inside list-decimal py-1 text-lg">
-                  {children}
-                </ol>
-              ),
-              code: (props) => {
-                const match = /language-(\w+)/.exec(props.className || '');
-                return props.inline ? (
-                  <span className="px-1 bg-gray-200 text-sky-600">
-                    <code>{props.children}</code>
-                  </span>
-                ) : (
-                  <Prism
-                    style={materialDark}
-                    language={match ? match[1] : ''}
-                    PreTag="div"
-                  >
-                    {props.children.join('\n')}
-                  </Prism>
-                );
-              },
-              p: ({ children }) => (
-                <span className="my-2 text-lg">{children}</span>
-              ),
-              blockquote: ({ children }) => (
-                <blockquote className=" border-l-4 md:ml-3 my-2 p-4 bg-gray-50 text-sm break-words">
-                  {children}
-                </blockquote>
-              ),
-              img: (props) =>
-                props.src ? (
-                  <Image
-                    className=" shadow-md md:ml-4 my-2"
-                    width={800}
-                    height={800}
-                    src={props.src}
-                    alt={props.alt || 'notion-img'}
-                  />
-                ) : (
-                  <span></span>
-                )
-            }}
+            components={mdComponents}
           >
             {mdString}
           </ReactMarkdown>
