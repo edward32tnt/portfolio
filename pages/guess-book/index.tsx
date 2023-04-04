@@ -14,15 +14,21 @@ interface Props {
 
 const GuessBook: NextPage<Props> = ({ comments }) => {
   const [theData, setTheData] = useState(comments);
+  const [error, setError] = useState(false);
   const [isPending, setPending] = useState(false);
   const [formData, setFormData] = useState({
     nickname: '',
     content: ''
   });
   const handleSubmit: FormEventHandler = async (e) => {
+    e.preventDefault();
+    if (!formData.content || !formData.nickname) {
+      setError(true);
+      return;
+    }
+    setError(false);
     setFormData({ nickname: '', content: '' });
     setPending(true);
-    e.preventDefault();
     const {
       data: {
         createGuessBook: { id }
@@ -55,7 +61,12 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
         onSubmit={handleSubmit}
       >
         <input
-          className="rounded p-2 focus-visible:outline-none focus-visible:ring focus-visible:ring-sky-200"
+          className={
+            ' border-2 rounded p-2 focus-visible:outline-none focus-visible:ring focus-visible:ring-sky-200' +
+            classNames({
+              ' border-red-500': error
+            })
+          }
           type="text"
           name="nickName"
           value={formData.nickname}
@@ -69,7 +80,12 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
         />
         <p className="flex gap-4 justify-start">
           <textarea
-            className="p-2 rounded w-full focus-visible:outline-none focus-visible:ring focus-visible:ring-sky-200"
+            className={
+              'border-2  p-2 rounded w-full focus-visible:outline-none focus-visible:ring focus-visible:ring-sky-200' +
+              classNames({
+                ' border-red-500': error
+              })
+            }
             name="content"
             placeholder="Content"
             value={formData.content}
