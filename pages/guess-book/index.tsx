@@ -22,7 +22,7 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
   });
   const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
-    if (!formData.content || !formData.nickname) {
+    if (!formData.content.trim() || !formData.nickname.trim()) {
       setError(true);
       return;
     }
