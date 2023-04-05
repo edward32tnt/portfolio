@@ -34,6 +34,7 @@ export default (wx: WorkExperience) => {
             height={80}
             alt={wx.companyName}
             src={wx.companyLogo?.url}
+            unoptimized
           />
         )}
       </p>

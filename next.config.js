@@ -12,25 +12,25 @@ module.exports = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
         port: '',
-        pathname: '/'
+        pathname: '/**'
       },
       {
         protocol: 'https',
         hostname: 's3.us-west-2.amazonaws.com',
         port: '',
-        pathname: '/'
+        pathname: '/**'
       },
       {
         protocol: 'https',
         hostname: 'www.notion.so',
         port: '',
-        pathname: '/'
+        pathname: '/**'
       },
       {
         protocol: 'https',
         hostname: 'media.graphassets.com',
         port: '',
-        pathname: '/'
+        pathname: '/**'
       }
     ]
   },

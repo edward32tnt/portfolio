@@ -48,19 +48,26 @@ const ProjectModalView = (props: ProjectCardProps & Props) => {
           className="text-white cursor-pointer absolute top-0 -right-8 md:-top-8 md:-right-8 w-8 h-8 animate-in fade-in duration-200"
         />
         <div className=" md:col-span-3 md:rounded-bl md:rounded-tl bg-white animate-in h-full fade-in slide-in-from-top-0 md:slide-in-from-left ease-in-out overflow-scroll duration-200 flex flex-col justify-between items-center border-r p-4">
-          <ShimmerImage
-            alt=""
-            w={bgList[bgIndex].width}
-            h={bgList[bgIndex].height}
-            className={
-              'repeat-1 fill-mode-forwards h-40 md:h-5/6 w-auto ' +
-              classNames({
-                'animate-in fade-in zoom-in-50': !isTransicationing,
-                'animate-out fade-out zoom-out-50': isTransicationing
-              })
-            }
-            src={bgList[bgIndex].url}
-          />
+          {bgList.map((x, i) => (
+            <ShimmerImage
+              key={'modal-slide-image-' + i}
+              alt=""
+              w={x.width}
+              h={x.height}
+              lazy={false}
+              className={
+                'repeat-1 fill-mode-forwards h-40 md:h-5/6 w-auto ' +
+                classNames({
+                  hidden: i !== bgIndex,
+                  'animate-in fade-in zoom-in-95':
+                    i === bgIndex && !isTransicationing,
+                  'animate-out fade-out zoom-out-95':
+                    i === bgIndex && isTransicationing
+                })
+              }
+              src={x.url}
+            />
+          ))}
           <div className="p-4 flex gap-4">
             {bgList.map((_, index) => {
               return (

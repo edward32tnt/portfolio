@@ -4,6 +4,7 @@ interface Props {
   src: string;
   alt?: string;
   className?: string;
+  lazy?: boolean;
   w: number;
   h: number;
 }
@@ -34,16 +35,18 @@ const imgSrcLoader: ImageLoader = ({ src, width }) => {
   return x.join('/');
 };
 
-export default function ({ alt, src, h, w, className }: Props) {
+export default function ({ alt, src, h, w, className, lazy }: Props) {
   return (
     <Image
       className={className}
       src={src}
       loader={imgSrcLoader}
+      loading={lazy ? 'lazy' : 'eager'}
       alt={alt || ''}
       width={w}
       height={h}
       placeholder="blur"
+      unoptimized
       blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(w, h))}`}
     />
   );
