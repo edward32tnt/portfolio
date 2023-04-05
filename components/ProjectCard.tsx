@@ -47,6 +47,8 @@ const ProjectCard = (pc: ProjectCardProps) => {
             width={pc.images[0].imageUrl.width}
             height={pc.images[0].imageUrl.height}
             alt={pc.projectName}
+            loading="eager"
+            unoptimized
           />
         )}
         <p className="my-2">{pc.projectName}</p>

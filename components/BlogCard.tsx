@@ -52,6 +52,7 @@ export default function (props: BlogProp) {
           blurDataURL={PlaceHolder.blurDataURL}
           width={300}
           height={300}
+          unoptimized
         />
       </div>
       <p className="text-xl break-words text-stone-500 p-2">{title}</p>

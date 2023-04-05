@@ -53,6 +53,7 @@ export const img: MarkdownComponent<'img'> = (props) =>
       height={800}
       src={props.src}
       alt={props.alt || 'notion-img'}
+      unoptimized
     />
   ) : (
     <span></span>
