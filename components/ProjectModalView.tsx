@@ -3,7 +3,6 @@ import { XCircleIcon } from '@heroicons/react/24/outline';
 import dayjs from 'dayjs';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { MouseEventHandler, useEffect, useState } from 'react';
-import Image from 'next/image';
 import classNames from 'classnames';
 import ShimmerImage from './ShimmerImage';
 
@@ -11,7 +10,7 @@ interface Props {
   onClose: Function;
 }
 const ProjectModalView = (props: ProjectCardProps & Props) => {
-  const bgList = props.images.map((x) => x.imageUrl);
+  const bgList = props.imageFromImageKit.urls;
   const [bgIndex, setBgIndex] = useState(0);
   const [isTransicationing, setIsTransicationing] = useState(false);
   const handleClose: MouseEventHandler = (e) => {
@@ -52,8 +51,8 @@ const ProjectModalView = (props: ProjectCardProps & Props) => {
             <ShimmerImage
               key={'modal-slide-image-' + i}
               alt=""
-              w={x.width}
-              h={x.height}
+              w={600}
+              h={600}
               lazy={false}
               className={
                 'repeat-1 fill-mode-forwards h-40 md:h-5/6 w-auto ' +
@@ -65,7 +64,7 @@ const ProjectModalView = (props: ProjectCardProps & Props) => {
                     i === bgIndex && isTransicationing
                 })
               }
-              src={x.url}
+              src={x}
             />
           ))}
           <div className="p-4 flex gap-4">

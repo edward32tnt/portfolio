@@ -6,17 +6,8 @@ const getMainInfo = `
     id
     fullName
     currentTitle
-    images {
-      id
-      imageUrl {
-        width
-        url
-        height
-      }
-      createdAt
-    }
-    resumeDownload {
-      url
+    imageFromImageKits {
+      urls
     }
 `
 
@@ -72,6 +63,9 @@ query MainInfos {
       location
       companyLogo {
         url
+      }
+      imageFromImageKit {
+        urls
       }
       tags {
         id
@@ -148,6 +142,9 @@ query MainInfos {
       projectName
       startTime
       present
+      imageFromImageKit {
+        urls
+      }
       images {
         id
         imageUrl {

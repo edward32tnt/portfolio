@@ -20,20 +20,24 @@ export interface WorkExperience {
   endTime?: Date;
   present?: boolean;
   companyLogo?: { url: string };
+  imageFromImageKit: {
+    urls: string[];
+  };
   tags?: IntegerData[];
 }
 
 export default (wx: WorkExperience) => {
+  console.log(wx);
   return (
     <div className="p-2 border-b text-stone-500">
       <p className="text-3xl flex justify-between mb-2">
         <span className=" uppercase">{wx.companyName}</span>
-        {wx.companyLogo && (
+        {wx.imageFromImageKit.urls && (
           <Image
             width={120}
             height={80}
-            alt={wx.companyName}
-            src={wx.companyLogo?.url}
+            alt={wx.imageFromImageKit.urls[0]}
+            src={wx.imageFromImageKit.urls[0]}
             unoptimized
           />
         )}

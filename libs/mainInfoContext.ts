@@ -6,16 +6,8 @@ export const mainInfoContext = createContext({
     fullName: '',
     currentTitle: '',
     linkedin: '',
-    resumeDownload: {
-      url: '',
-    },
-    images: [
-      {
-        id: '',
-        imageUrl: {
-          url: '',
-        },
-      }
-    ],
+    imageFromImageKits: [{
+      urls: [],
+    }],
   }
 })

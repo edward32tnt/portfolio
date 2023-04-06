@@ -14,21 +14,18 @@ export interface MainInfo {
   fullName: string;
   currentTitle: string;
   linkedin: string;
-  resumeDownload: {
-    url: string;
-  };
-  images: [
+  ImageFromImageKits: [
     {
-      id: string;
-      imageUrl: {
-        url: string;
-      };
+      urls: string[];
     }
   ];
 }
 const Mainavatar = () => {
   const { mainInfo } = useContext(mainInfoContext);
-  const bgList = mainInfo.images.map((x) => x.imageUrl.url);
+  const bgList = mainInfo.imageFromImageKits.reduce((p, c) => {
+    p.push(...c.urls);
+    return p;
+  }, []);
   const [bgIndex, setBgIndex] = useState(0);
   const [isTransicationing, setIsTransicationing] = useState(false);
 

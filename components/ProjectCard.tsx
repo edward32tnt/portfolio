@@ -6,7 +6,10 @@ import { createPortal } from 'react-dom';
 import ProjectModalView from './ProjectModalView';
 export interface ProjectCardProps {
   id: string;
-  images: [
+  imageFromImageKit: {
+    urls: string[];
+  };
+  images?: [
     {
       id: string;
       imageUrl: {
@@ -40,12 +43,12 @@ const ProjectCard = (pc: ProjectCardProps) => {
         className="flex justify-center flex-col items-center text-center text-stone-500 cursor-pointer border-b md:border-b-0"
         onClick={handleOpenDetail}
       >
-        {pc.images.length > 0 && (
+        {pc.imageFromImageKit.urls.length > 0 && (
           <Image
             className=" w-full h-[200px] overflow-hidden"
-            src={pc.images[0].imageUrl.url}
-            width={pc.images[0].imageUrl.width}
-            height={pc.images[0].imageUrl.height}
+            src={pc.imageFromImageKit.urls[0]}
+            width={300}
+            height={300}
             alt={pc.projectName}
             loading="eager"
             unoptimized
