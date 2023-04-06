@@ -24,7 +24,6 @@ export interface MainInfo {
 }
 const Mainavatar = () => {
   const { mainInfo } = useContext(mainInfoContext);
-  console.log(mainInfo.avatarFromImageKit);
   const bgList = mainInfo.imageFromImageKits.reduce((p, c) => {
     p.push(...c.urls);
     return p;
