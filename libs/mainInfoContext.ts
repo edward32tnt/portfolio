@@ -6,6 +6,9 @@ export const mainInfoContext = createContext({
     fullName: '',
     currentTitle: '',
     linkedin: '',
+    avatarFromImageKit: {
+      urls: []
+    },
     imageFromImageKits: [{
       urls: [],
     }],

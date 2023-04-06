@@ -2,9 +2,8 @@ import Image from 'next/image';
 
 import { CommandLineIcon, CodeBracketIcon } from '@heroicons/react/24/outline';
 
-import avatarImg from '../public/avatarImg.png';
 import Link from 'next/link';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 import { mainInfoContext } from '../libs/mainInfoContext';
@@ -14,6 +13,9 @@ export interface MainInfo {
   fullName: string;
   currentTitle: string;
   linkedin: string;
+  avatarFromImageKit: {
+    urls: string[];
+  };
   ImageFromImageKits: [
     {
       urls: string[];
@@ -22,6 +24,7 @@ export interface MainInfo {
 }
 const Mainavatar = () => {
   const { mainInfo } = useContext(mainInfoContext);
+  console.log(mainInfo.avatarFromImageKit);
   const bgList = mainInfo.imageFromImageKits.reduce((p, c) => {
     p.push(...c.urls);
     return p;
@@ -77,7 +80,7 @@ const Mainavatar = () => {
         <Image
           alt="avatarImg"
           className="rounded-full border md:-translate-y-4 w-14 h-14 md:w-24 md:h-24"
-          src={avatarImg}
+          src={mainInfo.avatarFromImageKit.urls[0]}
           height={120}
           width={120}
           unoptimized

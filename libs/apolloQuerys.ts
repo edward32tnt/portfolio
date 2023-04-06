@@ -6,6 +6,9 @@ const getMainInfo = `
     id
     fullName
     currentTitle
+    avatarFromImageKit {
+      urls
+    }
     imageFromImageKits {
       urls
     }
