@@ -99,11 +99,11 @@ query MainInfos {
 `
 
 export const getGuessbook = gql`
-query MainInfos {
+query GuessBooks ($skip: Int = 0) {
   mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
     ${getMainInfo}
   }
-  guessBooks(orderBy: publishedAt_DESC) {
+  guessBooks(orderBy: publishedAt_DESC, first: 10, skip: $skip) {
     nickname
     id
     publishedAt

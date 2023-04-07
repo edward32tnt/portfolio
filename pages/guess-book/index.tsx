@@ -6,7 +6,13 @@ import {
   publishGuessbook
 } from '../../libs/apolloQuerys';
 import CommentCard, { CommentProps } from '../../components/CommentCard';
-import { FormEventHandler, useState } from 'react';
+import {
+  FormEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import classNames from 'classnames';
 interface Props {
   comments: CommentProps[];
@@ -14,12 +20,28 @@ interface Props {
 
 const GuessBook: NextPage<Props> = ({ comments }) => {
   const [theData, setTheData] = useState(comments);
+  const [currentSkip, setCurrentSkip] = useState(10);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [error, setError] = useState(false);
   const [isPending, setPending] = useState(false);
   const [formData, setFormData] = useState({
     nickname: '',
     content: ''
   });
+
+  const handleLoadMore = async () => {
+    setIsLoadingMore(true);
+    const { data } = await client.query({
+      query: getGuessbook,
+      variables: {
+        skip: currentSkip
+      }
+    });
+    setTheData(theData.concat(data.guessBooks));
+    setCurrentSkip(currentSkip + 10);
+    setIsLoadingMore(false);
+  };
+
   const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
     if (!formData.content.trim() || !formData.nickname.trim()) {
@@ -54,6 +76,7 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
 
     return false;
   };
+
   return (
     <div className="p-4 flex flex-col gap-4">
       <form
@@ -117,13 +140,24 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
       {theData.map((x) => (
         <CommentCard key={'comment-card-' + x.id} {...x} />
       ))}
+      <div
+        className={
+          ' cursor-pointer rounded border p-2 items-center text-center hover:bg-gray-500 hover:text-white transition-all duration-150'
+        }
+        onClick={handleLoadMore}
+      >
+        {isLoadingMore ? 'loading...' : 'more'}
+      </div>
     </div>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query({
-    query: getGuessbook
+    query: getGuessbook,
+    variables: {
+      skip: 0
+    }
   });
 
   const { mainInfo, guessBooks } = data;
