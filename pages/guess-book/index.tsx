@@ -8,14 +8,19 @@ import {
 import CommentCard, { CommentProps } from '../../components/CommentCard';
 import {
   FormEventHandler,
+  useEffect,
+  useRef,
   useState
 } from 'react';
 import classNames from 'classnames';
+import { useOnScreen } from '../../libs/useOnScreen';
 interface Props {
   comments: CommentProps[];
 }
 
 const GuessBook: NextPage<Props> = ({ comments }) => {
+  const moreBtn = useRef<HTMLDivElement>(null)
+  const isOnScreen = useOnScreen(moreBtn)
   const [theData, setTheData] = useState(comments);
   const [currentSkip, setCurrentSkip] = useState(10);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -38,6 +43,12 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
     setCurrentSkip(currentSkip + 10);
     setIsLoadingMore(false);
   };
+
+  useEffect(() => {
+    if (isOnScreen) {
+      handleLoadMore()
+    }
+  }, [isOnScreen])
 
   const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
@@ -142,7 +153,7 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
         className={
           ' cursor-pointer rounded border p-2 items-center text-center hover:bg-gray-500 hover:text-white transition-all duration-150'
         }
-        onClick={handleLoadMore}
+        ref={moreBtn}
       >
         {isLoadingMore ? 'loading...' : 'more'}
       </div>
