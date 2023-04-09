@@ -13,7 +13,7 @@ import {
   GlobeAsiaAustraliaIcon as WorkActive,
   TrophyIcon as ProjectActive,
   BookOpenIcon as EducationActive,
-  ChatBubbleBottomCenterTextIcon as GuessBookActive,
+  ChatBubbleBottomCenterTextIcon as GuestBookActive,
   BookmarkIcon as BlogActive,
 } from '@heroicons/react/24/solid'
 
@@ -23,7 +23,7 @@ export const menuData = [
   { name: 'Skill', icon: LightBulbIcon, activeIcon: SkillActive, route: '/skill' },
   { name: 'Expirence', icon: GlobeAsiaAustraliaIcon, activeIcon: WorkActive, route: '/work-expirence' },
   { name: 'Project', icon: TrophyIcon, activeIcon: ProjectActive, route: '/project' },
-  { name: 'GuessBook', icon: ChatBubbleBottomCenterTextIcon, activeIcon: GuessBookActive, route: '/guess-book' },
+  { name: 'GuestBook', icon: ChatBubbleBottomCenterTextIcon, activeIcon: GuestBookActive, route: '/guest-book' },
   { name: 'Blog', icon: BookmarkIcon, activeIcon: BlogActive, route: '/blog' },
   // { name: 'About', icon: IdentificationIcon, activeIcon: AboutActive, route: '/about' },
 ]

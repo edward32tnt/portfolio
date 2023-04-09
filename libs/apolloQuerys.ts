@@ -99,11 +99,11 @@ query MainInfos {
 `
 
 export const getGuessbook = gql`
-query GuessBooks ($skip: Int = 0) {
+query GuestBooks ($skip: Int = 0) {
   mainInfo(where: {id: "clf0p0xk31tca0a1213fm7544"}) {
     ${getMainInfo}
   }
-  guessBooks(orderBy: publishedAt_DESC, first: 10, skip: $skip) {
+  guestBooks(orderBy: publishedAt_DESC, first: 10, skip: $skip) {
     nickname
     id
     publishedAt
@@ -114,13 +114,13 @@ query GuessBooks ($skip: Int = 0) {
 `
 
 export const createGuessbook = gql`
-mutation CreateGuessBook($nickname: String!, $content: String!, $hash: String!){
-  createGuessBook(
+mutation CreateGuestBook($nickname: String!, $content: String!, $hash: String!){
+  createGuestBook(
     data: {content: $content, nickname: $nickname, hash: $hash}
   ) {
     id
   }
-  publishGuessBook(where: {hash: $hash}, to: PUBLISHED) {
+  publishGuestBook(where: {hash: $hash}, to: PUBLISHED) {
     id
   }
 }

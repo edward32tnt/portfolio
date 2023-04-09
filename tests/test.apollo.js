@@ -6,22 +6,22 @@ const {
 const { setContext } = require('@apollo/client/link/context');
 const { gql } = require('@apollo/client');
 
-const createGuessBook = gql`
+const createGuestBook = gql`
 mutation MyMutation ($hash: String!, $content: String!, $nickname: String!){
-  createGuessBook(data: {content: $content, nickname: $nickname, hash: $hash}) {
+  createGuestBook(data: {content: $content, nickname: $nickname, hash: $hash}) {
     id
     nickname
     content
   }
-  publishGuessBook(where: {hash: $hash}) {
+  publishGuestBook(where: {hash: $hash}) {
     id
   }
 }
 `;
 
-const getGuessBook = gql`
-query GuessBooks ($skip: Int = 0) {
-  guessBooks(orderBy: publishedAt_DESC, first: 10, skip: $skip) {
+const getGuestBook = gql`
+query GuestBooks ($skip: Int = 0) {
+  guestBooks(orderBy: publishedAt_DESC, first: 10, skip: $skip) {
     nickname
     id
     hash
@@ -51,11 +51,11 @@ const client = new ApolloClient({
 
 (async function() {
   const res = await client.query({
-    query: getGuessBook,
+    query: getGuestBook,
   })
   console.log(res)
   await client.mutate({
-    mutation: createGuessBook,
+    mutation: createGuestBook,
     variables: {
       nickname: 'test111',
       content:'test222',
@@ -63,7 +63,7 @@ const client = new ApolloClient({
     }
   })
   const res2 = await client.query({
-    query: getGuessBook,
+    query: getGuestBook,
   })
   console.log(res2)
 })()

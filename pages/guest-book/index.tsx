@@ -18,7 +18,7 @@ interface Props {
   comments: CommentProps[];
 }
 
-const GuessBook: NextPage<Props> = ({ comments }) => {
+const GuestBook: NextPage<Props> = ({ comments }) => {
   const moreBtn = useRef<HTMLDivElement>(null)
   const isOnScreen = useOnScreen(moreBtn)
   const [theData, setTheData] = useState(comments);
@@ -39,7 +39,7 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
         skip: currentSkip
       }
     });
-    setTheData(theData.concat(data.guessBooks));
+    setTheData(theData.concat(data.guestBooks));
     setCurrentSkip(currentSkip + 10);
     setIsLoadingMore(false);
   };
@@ -61,7 +61,7 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
     setPending(true);
     const {
       data: {
-        createGuessBook: { id }
+        createGuestBook: { id }
       }
     } = await writeClient.mutate({
       mutation: createGuessbook,
@@ -81,7 +81,7 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
       query: getGuessbook
     });
     setPending(false);
-    setTheData(data.guessBooks);
+    setTheData(data.guestBooks);
 
     return false;
   };
@@ -169,14 +169,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
   });
 
-  const { mainInfo, guessBooks } = data;
+  const { mainInfo, guestBooks } = data;
 
   return {
     props: {
       mainInfo,
-      comments: guessBooks
+      comments: guestBooks
     }
   };
 };
 
-export default GuessBook;
+export default GuestBook;
