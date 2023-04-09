@@ -6,32 +6,30 @@ const {
 const { setContext } = require('@apollo/client/link/context');
 const { gql } = require('@apollo/client');
 
-const getMainInfo = gql`
-  query MainInfos {
-    mainInfo(where: { id: "clf0p0xk31tca0a1213fm7544" }) {
-      createdAt
-      currentTitle
-      fullName
-      id
-      linkedin
-      resumeDownload {
-        url
-      }
-      mainBackground {
-        ... on Image {
-          imageUrl {
-            id
-            url
-            size
-            width
-            height
-            fileName
-          }
-        }
-      }
-    }
+const createGuessBook = gql`
+mutation MyMutation ($hash: String!, $content: String!, $nickname: String!){
+  createGuessBook(data: {content: $content, nickname: $nickname, hash: $hash}) {
+    id
+    nickname
+    content
   }
+  publishGuessBook(where: {hash: $hash}) {
+    id
+  }
+}
 `;
+
+const getGuessBook = gql`
+query GuessBooks ($skip: Int = 0) {
+  guessBooks(orderBy: publishedAt_DESC, first: 10, skip: $skip) {
+    nickname
+    id
+    hash
+    publishedAt
+    content
+  }
+}
+`
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_HYGRAPH_URL
 });
@@ -51,8 +49,21 @@ const client = new ApolloClient({
   cache: new InMemoryCache({})
 });
 
-client
-  .query({
-    query: getMainInfo
+(async function() {
+  const res = await client.query({
+    query: getGuessBook,
   })
-  .then((data) => console.log(JSON.stringify(data, null, 2)));
+  console.log(res)
+  await client.mutate({
+    mutation: createGuessBook,
+    variables: {
+      nickname: 'test111',
+      content:'test222',
+      hash: 'test111test222',
+    }
+  })
+  const res2 = await client.query({
+    query: getGuessBook,
+  })
+  console.log(res2)
+})()
