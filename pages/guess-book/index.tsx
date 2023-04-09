@@ -1,16 +1,13 @@
 import { GetServerSideProps, NextPage } from 'next';
+import { v4 } from 'uuid'
 import client, { writeClient } from '../../libs/apollo';
 import {
   createGuessbook,
   getGuessbook,
-  publishGuessbook
 } from '../../libs/apolloQuerys';
 import CommentCard, { CommentProps } from '../../components/CommentCard';
 import {
   FormEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
   useState
 } from 'react';
 import classNames from 'classnames';
@@ -58,15 +55,16 @@ const GuessBook: NextPage<Props> = ({ comments }) => {
     } = await writeClient.mutate({
       mutation: createGuessbook,
       variables: {
-        ...formData
+        ...formData,
+        hash: v4(),
       }
     });
-    await writeClient.mutate({
-      mutation: publishGuessbook,
-      variables: {
-        id: id
-      }
-    });
+    // await writeClient.mutate({
+    //   mutation: publishGuessbook,
+    //   variables: {
+    //     id: id
+    //   }
+    // });
 
     const { data } = await client.query({
       query: getGuessbook

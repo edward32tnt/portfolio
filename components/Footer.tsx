@@ -31,6 +31,9 @@ export default function () {
             ></path>
           </svg>
         </a>
+        <a href="https://imagekit.io" target='_blank'>
+          <Image src="https://ik.imgkit.net/ikmedia/logo/light_T4buIzohVH.svg" alt='ImgKit Logo' width={72} height={16} />
+        </a>
       </span>
     </footer>
   );

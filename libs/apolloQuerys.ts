@@ -114,19 +114,13 @@ query GuessBooks ($skip: Int = 0) {
 `
 
 export const createGuessbook = gql`
-mutation CreateGuessBook($nickname: String!, $content: String!){
+mutation CreateGuessBook($nickname: String!, $content: String!, $hash: String!){
   createGuessBook(
-    data: {content: $content, nickname: $nickname}
+    data: {content: $content, nickname: $nickname, hash: $hash}
   ) {
     id
   }
-}
-
-`
-
-export const publishGuessbook = gql`
-mutation PublishGuessBook ($id: ID!)  {
-  publishGuessBook(where: {id: $id}, to: PUBLISHED) {
+  publishGuessBook(where: {hash: $hash}, to: PUBLISHED) {
     id
   }
 }
