@@ -2,7 +2,10 @@ import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import notion from '../../../libs/notion';
-import { ArrowLeftCircleIcon, BookmarkSquareIcon } from '@heroicons/react/24/outline';
+import {
+  ArrowLeftCircleIcon,
+  BookmarkSquareIcon
+} from '@heroicons/react/24/outline';
 import dayjs from 'dayjs';
 import { AppProps } from 'next/app';
 import ReactMarkdown from 'react-markdown';
@@ -117,9 +120,16 @@ const PageDetail: NextPage<AppProps<Props>> = ({ pageProps: { page } }) => {
           </span>
         </div>
         <div className="border-b pb-4 px-4 flex gap-2 justify-start items-center">
-          <BookmarkSquareIcon className='w-8 h-8 text-gray-500'/>
-          { category.type === 'multi_select' && category.multi_select
-          .map(c=><span className=' rounded px-4 bg-info-400'>{c.name}</span>)}
+          <BookmarkSquareIcon className="w-8 h-8 text-gray-500" />
+          {category.type === 'multi_select' &&
+            category.multi_select.map((c) => (
+              <span
+                key={'category-item-' + c.id}
+                className=" rounded px-4 bg-info-400"
+              >
+                {c.name}
+              </span>
+            ))}
         </div>
         {mdString.length > 0 ? (
           <ReactMarkdown
